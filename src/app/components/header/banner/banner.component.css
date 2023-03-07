@@ -1,0 +1,14 @@
+:host {
+    flex-grow: 1;
+
+    display: flex;
+}
+
+.banner {
+    background-color: #8a5422;
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
