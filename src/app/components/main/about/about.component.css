@@ -1,0 +1,76 @@
+:host {
+    position: relative;
+    padding: 60px 3% 0px;
+
+}
+
+.photo {
+    position: absolute;
+    top: -120px;
+    left: 25px;
+
+    background-color: white;
+    width: 175px;
+    height: 175px;
+    border: 10px solid white;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+
+:host > .title {
+    margin-bottom: 30px;
+}
+
+:host > .title h2 {
+    margin-bottom: 20px;
+}
+
+:host > .title h4 {
+    font-weight: 300;
+}
+
+:host .info {
+    display: grid;
+
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+}
+
+.tech-stacks {
+    display: inherit;
+
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+}
+
+.tech-stacks .title {
+    margin-bottom: 10px;
+}
+
+.tech-stacks .stack {
+    list-style: none;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.stack > li {
+    border:2px solid var(--green);
+    padding: 10px;
+    border-radius: 5px;
+
+    font-family: var(--font-2);
+}
+
+@media screen and (min-width: 768px) {
+
+    .tech-stacks {
+        display: inherit;
+    
+        grid-template-columns: 1fr 1fr;
+        row-gap: 0px;
+        column-gap: 40px;
+    }
+}

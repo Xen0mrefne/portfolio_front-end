@@ -132,3 +132,19 @@ a {
 .relative {
     position: relative;
 }
+
+.section-title {
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: 30px;
+
+    text-align: center;
+}
+
+.section-list {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
