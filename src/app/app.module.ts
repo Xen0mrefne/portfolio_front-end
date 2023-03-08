@@ -10,6 +10,9 @@ import { AboutComponent } from './components/main/about/about.component';
 import { EducationComponent } from './components/main/education/education.component';
 import { SkillsComponent } from './components/main/skills/skills.component';
 import { ProjectsComponent } from './components/main/projects/projects.component';
+import { DegreeComponent } from './components/main/education/degree/degree.component';
+import { SkillItemComponent } from './components/main/skills/skill-item/skill-item.component';
+import { ProjectItemComponent } from './components/main/projects/project-item/project-item.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { ProjectsComponent } from './components/main/projects/projects.component
     AboutComponent,
     EducationComponent,
     SkillsComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    DegreeComponent,
+    SkillItemComponent,
+    ProjectItemComponent
   ],
   imports: [
     BrowserModule

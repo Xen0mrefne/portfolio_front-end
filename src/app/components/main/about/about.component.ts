@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Person } from './Person';
+import { PERSON } from './person_placeholder';
 
 @Component({
   selector: 'app-about',
@@ -6,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent {
-
+  person: Person = PERSON;
 }

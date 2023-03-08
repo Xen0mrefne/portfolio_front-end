@@ -1,11 +1,6 @@
 <section id="projects">
     <h2 class="section-title">Proyectos</h2>
-    <ul class="section-list">
-        <li class="project">
-            <h3 class="project-title">Portfolio</h3>
-            <p>06/03/2023 (6 de Marzo del 2023)</p>
-            <p>Portafolio Web creado a partir de las tecnologias Angular, Java, Spring Boot y MySQL</p>
-            <button class="btn btn-green">Ir</button>
-        </li>
-    </ul>
+    <div class="section-list">
+        <app-project-item *ngFor="let project of projects" [project]="project"></app-project-item>
+    </div>
 </section>

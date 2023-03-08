@@ -2,37 +2,27 @@
     
 </div>
 <div class="title">
-    <h2>Nombre_y_apellido</h2>
-    <h4>Titulo</h4>
+    <h2>{{person.fullName}}</h2>
+    <h4>{{person.title}}</h4>
 </div>
 <div class="info">
-    <p class="summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum commodi optio magnam ullam
-        eaque ipsam pariatur illo, possimus consequuntur voluptatum?</p>
+    <p class="summary">{{person.about}}</p>
 
     <div class="tech-stacks">
         <div>
             <h3 class="title">Front-End:</h3>
             <ul class="stack">
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>Bootstrap</li>
-                <li>JavaScript</li>
-                <li>React</li>
-                <li>Tailwind</li>
-                <li>Angular</li>
-                <li>TypeScript</li>
+                <li *ngFor="let frontTech of person.techStack.frontEnd">
+                    {{frontTech}}
+                </li>
             </ul>
         </div>
         <div>
             <h3 class="title">Back-End:</h3>
             <ul class="stack">
-                <li>NodeJS</li>
-                <li>Express</li>
-                <li>MongoDB</li>
-                <li>Mongoose</li>
-                <li>Java</li>
-                <li>Spring Boot</li>
-                <li>MySQL</li>
+                <li *ngFor="let backTech of person.techStack.backEnd">
+                    {{backTech}}
+                </li>
             </ul>
         </div>
     </div>
