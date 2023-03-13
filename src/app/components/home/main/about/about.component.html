@@ -1,0 +1,35 @@
+<div class="photo">
+    
+</div>
+<div class="title">
+    <h2>{{person
+        ?
+        person.lastName + " " + person.firstName
+        :
+        "Loading"}}</h2>
+    <h4>Técnico en Informática de Gestión</h4>
+</div>
+<div class="info">
+    <p class="summary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, voluptatibus.</p>
+
+    <div class="tech-stacks">
+        <div>
+            <h3 class="title">Front-End:</h3>
+            <ul *ngIf="person" class="stack">
+                <li *ngFor="let frontTech of person.techStacks.frontEnd">
+                    {{frontTech}}
+                </li>
+            </ul>
+            <p *ngIf="!person">Sin tech stack Front end</p>
+        </div>
+        <div>
+            <h3 class="title">Back-End:</h3>
+            <ul *ngIf="person" class="stack">
+                <li *ngFor="let backTech of person.techStacks.backEnd">
+                    {{backTech}}
+                </li>
+            </ul>
+            <p *ngIf="!person">Sin tech stack Back end</p>
+        </div>
+    </div>
+</div>

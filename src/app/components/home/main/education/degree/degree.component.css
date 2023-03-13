@@ -27,7 +27,7 @@
     margin-bottom: 10px;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
     
     :host {
         text-align: start;

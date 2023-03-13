@@ -5,13 +5,13 @@
     justify-items: center;
 }
 
-@media screen and (min-width: 512px) {
+@media (min-width: 512px) {
     .skill-grid {
         grid-template-columns: 1fr 1fr;
     }
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
 
     .skill-grid {
         grid-template-columns: 1fr 1fr 1fr;
