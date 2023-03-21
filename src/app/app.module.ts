@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/home/header/header.component';
@@ -17,6 +18,11 @@ import { ProjectItemComponent } from './components/home/main/projects/project-it
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { interceptorProvider } from './service/interceptor-service';
+import { ExperiencesComponent } from './components/home/main/experiences/experiences.component';
+import { ExperienceItemComponent } from './components/home/main/experiences/experience-item/experience-item.component';
+import { ExperienceAddComponent } from './components/home/main/experiences/experience-add/experience-add.component';
+import { ExperienceEditComponent } from './components/home/main/experiences/experience-item/experience-edit/experience-edit.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +39,21 @@ import { LoginComponent } from './components/login/login.component';
     SkillItemComponent,
     ProjectItemComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ExperiencesComponent,
+    ExperienceItemComponent,
+    ExperienceAddComponent,
+    ExperienceEditComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    interceptorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

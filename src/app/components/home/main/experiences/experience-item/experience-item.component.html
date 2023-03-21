@@ -1,0 +1,20 @@
+<h3>{{experience.name}}</h3>
+<p>{{experience.company}}</p>
+<p>{{experience.description}}</p>
+<div class="options" *ngIf="isLogged">
+    <button class="btn btn-circle btn-green" (click)="toggleEdit()">
+        <svg version="1.1" viewBox="0 0 23.263 23.272" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(-89.598 -112.32)">
+                <rect transform="rotate(45)" x="155.88" y="7.6182" width="6.7032" height="18.803" ry="0" />
+                <path transform="rotate(45 97.445 124.12)" d="m100.01 137.53-3.2471-5.6241h6.4942z" />
+                <rect transform="rotate(45)" x="155.88" y="3.2036" width="6.6952" height="4.1847" />
+            </g>
+        </svg>
+    </button>
+    <button class="btn btn-circle btn-red" (click)="onDelete()">X</button>
+</div>
+<app-experience-edit
+*ngIf="modalOpen"
+(onEdit)="onConfirmEdit($event)"
+(onCloseModal)="toggleEdit()"
+[experience]="experience"></app-experience-edit>

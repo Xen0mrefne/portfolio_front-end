@@ -1,0 +1,22 @@
+<div class="modal">
+    <form (ngSubmit)="onSubmit()" >
+        <div class="user-input-group">
+            <div class="user-input">
+                <label for="position">Position:</label>
+                <input id="position" name="position" class="input" type="text" [(ngModel)]="position">
+            </div>
+            <div class="user-input">
+                <label for="company">Company:</label>
+                <input id="company" name="company" class="input" type="text" [(ngModel)]="company">
+            </div>
+            <div class="user-input">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" [(ngModel)]="description" class="input" cols="30" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="options">
+            <button type="submit" class="btn btn-green">Add</button>
+            <button class="btn btn-red" (click)="closeModal($event)">Cancel</button>
+        </div>
+    </form>
+</div>

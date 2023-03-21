@@ -8,6 +8,7 @@ import { PERSON } from './person_placeholder';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
+
 export class AboutComponent implements OnInit {
   person: Person = PERSON
 
