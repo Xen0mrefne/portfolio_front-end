@@ -7,11 +7,11 @@ import { Experience } from '../model/experience';
   providedIn: 'root'
 })
 export class ExperienceService {
-  expURL = "http://localhost:8080/experience"
+  expURL = "http://localhost:8080/experiences"
 
   constructor(private httpClient:HttpClient) { }
 
-  public experienceList(): Observable<Experience[]> {
+  public getAll(): Observable<Experience[]> {
     return this.httpClient.get<Experience[]>(this.expURL)
   }
 

@@ -1,6 +1,14 @@
 <section id="projects">
-    <h2 class="section-title">Proyectos</h2>
+    <h2 class="section-title">Proyectos <app-add-button  *ngIf="isLogged" (onAddClick)="toggleAdd()"></app-add-button></h2>
     <div class="section-list">
-        <app-project-item *ngFor="let project of projects" [project]="project"></app-project-item>
+        <app-project-item
+        *ngFor="let project of projects"
+        [project]="project"
+        (onEdit)="editProject($event)"
+        (onDelete)="deleteProject($event)"></app-project-item>
     </div>
 </section>
+<app-project-add
+*ngIf="adding"
+(onAdd)="addProject($event)"
+(onCancelAdd)="toggleAdd()"></app-project-add>

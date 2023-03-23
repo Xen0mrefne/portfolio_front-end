@@ -14,7 +14,7 @@ export class ExperiencesComponent {
   constructor(private experienceService: ExperienceService, private tokenService: TokenService) {}
 
   isLogged: boolean = false;
-  modalOpen: boolean = false;
+  adding: boolean = false;
 
   ngOnInit():void {
     this.getExperience();
@@ -27,12 +27,12 @@ export class ExperiencesComponent {
   }
 
   getExperience(): void {
-    this.experienceService.experienceList().subscribe(data => this.experiences = data)
+    this.experienceService.getAll().subscribe({next: data => this.experiences = data})
   }
 
   toggleAdd():void {
-    this.modalOpen = !this.modalOpen;
-    if (this.modalOpen) {
+    this.adding = !this.adding;
+    if (this.adding) {
       document.body.style.overflowY = "hidden"
     } else {
       document.body.style.overflowY = "scroll"
@@ -40,35 +40,35 @@ export class ExperiencesComponent {
   }
 
   addExperience(experience: Experience): void {
-    this.experienceService.save(experience).subscribe(data => {
-      alert("Experience added Successfully")
+    this.experienceService.save(experience).subscribe({next: data => {
+      alert(data.message)
       this.toggleAdd();
       this.getExperience();
-    }, err => {
-      alert("error")
+    },error: err => {
+      alert(err.error.message)
       console.log(err)
       this.toggleAdd();
-    })
+    }})
   }
 
   editExperience(experience: Experience): void {
-    this.experienceService.update(experience.id!, experience).subscribe(data => {
-      alert("Experience edited Successfully")
+    this.experienceService.update(experience.id!, experience).subscribe({next: data => {
+      alert(data.message)
       this.getExperience();
-    }, err => {
-      alert("error")
+    }, error: err => {
+      alert(err.error.message)
       console.log(err)
-    })
+    }})
   }
 
   deleteExperience(experience: Experience): void {
-    this.experienceService.delete(experience.id!).subscribe(data => {
-      alert("Experience deleted Successfully")
+    this.experienceService.delete(experience.id!).subscribe({next: data => {
+      alert(data.message)
       this.getExperience();
-    }, err => {
-      alert("error")
+    }, error: err => {
+      alert(err.error.message)
       console.log(err)
-    })
+    }})
   }
  
 }

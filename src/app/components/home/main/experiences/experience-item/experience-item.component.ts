@@ -12,22 +12,34 @@ export class ExperienceItemComponent {
   @Input() experience!: Experience;
   @Input() isLogged!: boolean;
 
-  modalOpen: boolean = false;
+  editing: boolean = false;
+  deleting: boolean = false;
 
   toggleEdit():void {
-    this.modalOpen = !this.modalOpen;
-    if (this.modalOpen) {
+    this.editing = !this.editing;
+    if (this.editing) {
       document.body.style.overflowY = "hidden"
     } else {
       document.body.style.overflowY = "scroll"
     }
   }
 
-  onConfirmEdit(experience: Experience): void {
-    this.onExperienceEdit.emit(experience);
+  toggleDelete():void {
+    this.deleting = !this.deleting;
+    if (this.deleting) {
+      document.body.style.overflowY = "hidden"
+    } else {
+      document.body.style.overflowY = "scroll"
+    }
   }
 
-  onDelete():void {
+  confirmEdit(experience: Experience): void {
+    this.onExperienceEdit.emit(experience);
+    this.toggleEdit();
+  }
+
+  confirmDelete():void {
     this.onExperienceDelete.emit(this.experience)
+    this.toggleDelete();
   }
 }

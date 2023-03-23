@@ -1,4 +1,4 @@
-<h2 class="section-title">Experiencia <button *ngIf="isLogged" (click)="toggleAdd()" class="btn btn-green btn-circle">+</button></h2>
+<h2 class="section-title">Experiencia <app-add-button *ngIf="isLogged" (onAddClick)="toggleAdd()"></app-add-button></h2>
 <div class="section-list">
     <app-experience-item
     *ngFor="let experience of experiences"
@@ -8,6 +8,6 @@
     (onExperienceDelete)="deleteExperience($event)"></app-experience-item>
 </div>
 <app-experience-add
-*ngIf="modalOpen"
-(onCloseModal)="toggleAdd()"
+*ngIf="adding"
+(onCancelAdd)="toggleAdd()"
 (onAdd)="addExperience($event)"></app-experience-add>

@@ -1,4 +1,17 @@
 <h3 class="project-title">{{project.name}}</h3>
-<p>{{project.createdDate}}</p>
+<p>{{project.dateCreated}}</p>
 <p>{{project.description}}</p>
 <button class="btn btn-green">Ir</button>
+<div class="options">
+    <app-edit-button (onEditClick)="toggleEdit()"></app-edit-button>
+    <app-delete-button (onDeleteClick)="toggleDelete()"></app-delete-button>
+</div>
+<app-project-edit
+*ngIf="editing"
+[project]="project"
+(onEditConfirm)="confirmEdit($event)"
+(onCancelEdit)="toggleEdit()"></app-project-edit>
+<app-delete-confirmation
+*ngIf="deleting"
+(onCancelDelete)="toggleDelete()"
+(onConfirmDelete)="confirmDelete()"></app-delete-confirmation>

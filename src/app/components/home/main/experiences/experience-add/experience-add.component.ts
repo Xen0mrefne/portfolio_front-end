@@ -1,5 +1,4 @@
-import { Component, EventEmitter, HostListener, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, HostListener, Output, ViewChild } from '@angular/core';
 import { Experience } from 'src/app/model/experience';
 
 @Component({
@@ -10,8 +9,10 @@ import { Experience } from 'src/app/model/experience';
 
 
 export class ExperienceAddComponent {
-  @Output() onCloseModal: EventEmitter<any>= new EventEmitter();
+  @Output() onCancelAdd: EventEmitter<any>= new EventEmitter();
   @Output() onAdd: EventEmitter<Experience>= new EventEmitter();
+
+
   
 
   position!: string;
@@ -25,7 +26,7 @@ export class ExperienceAddComponent {
     this.onAdd.emit(experience)
   }
 
-  closeModal(e: Event): void {
-    this.onCloseModal.emit();
+  cancelAdd(): void {
+      this.onCancelAdd.emit();
   }
 }

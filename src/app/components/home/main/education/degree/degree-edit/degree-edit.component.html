@@ -1,0 +1,27 @@
+<div class="modal">
+    <form (ngSubmit)="onSubmit()">
+        <div class="user-input-group">
+            <div class="user-input">
+                <label for="title">Titulo:</label>
+                <input id="title" name="title" class="input" type="text" [(ngModel)]="title" value="{{title}}">
+            </div>
+            <div class="user-input">
+                <label for="institution">Institución:</label>
+                <input id="institution" name="institution" class="input" type="text" [(ngModel)]="institution"
+                    value="{{institution}}">
+            </div>
+            <div class="user-input">
+                <label for="start-date">Fecha de inicio:</label>
+                <input id="start-date" name="start-date" [(ngModel)]="startDate" value="{{startDate}}" class="input">
+            </div>
+            <div class="user-input">
+                <label for="end-date">Fecha de finalización:</label>
+                <input id="end-date" name="end-date" [(ngModel)]="endDate" value="{{endDate}}" class="input">
+            </div>
+        </div>
+        <div class="options">
+            <button type="submit" class="btn btn-green">Edit</button>
+            <button class="btn btn-red" (click)="closeModal()">Cancel</button>
+        </div>
+    </form>
+</div>

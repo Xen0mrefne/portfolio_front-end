@@ -32,7 +32,7 @@ export class LoginComponent {
     this.loginUser = new LoginUser(this.username, this.password)
 
     this.authService.login(this.loginUser)
-    .subscribe( data => {
+    .subscribe({next: data => {
         this.isLogged = true;
         this.isLogginFail = false;
         this.tokenService.setToken(data.token);
@@ -40,12 +40,12 @@ export class LoginComponent {
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
         this.router.navigate([""]) 
-      }, err => {
+      }, error: err => {
       this.isLogged = false;
       this.isLogginFail = true;
       this.err = err.message;
       console.log(this.err)
-    })
+    }})
   }
 
 }

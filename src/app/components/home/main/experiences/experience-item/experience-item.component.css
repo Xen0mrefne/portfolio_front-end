@@ -14,11 +14,3 @@
     display: flex;
     column-gap: 20px;
 }
-
-button {
-    padding: 10px;
-}
-
-svg {
-    width: 100%;
-}

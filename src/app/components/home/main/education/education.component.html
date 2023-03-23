@@ -1,4 +1,14 @@
-<h2 class="section-title">Educación</h2>
+<h2 class="section-title">Educación <app-add-button *ngIf="isLogged" (onAddClick)="toggleAdd()"></app-add-button></h2>
 <div class="section-list">
-    <app-degree *ngFor="let degree of degrees" [degree]="degree"></app-degree>
+    <app-degree
+    *ngFor="let degree of degrees"
+    [degree]="degree"
+    [isLogged]="isLogged"
+    (onEdit)="editDegree($event)"
+    (onDelete)="deleteDegree($event)"></app-degree>
 </div>
+<app-degree-add
+*ngIf="adding"
+(onCancelAdd)="toggleAdd()"
+(onAdd)="addDegree($event)"
+></app-degree-add>

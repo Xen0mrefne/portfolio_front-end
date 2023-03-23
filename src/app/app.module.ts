@@ -23,6 +23,14 @@ import { ExperiencesComponent } from './components/home/main/experiences/experie
 import { ExperienceItemComponent } from './components/home/main/experiences/experience-item/experience-item.component';
 import { ExperienceAddComponent } from './components/home/main/experiences/experience-add/experience-add.component';
 import { ExperienceEditComponent } from './components/home/main/experiences/experience-item/experience-edit/experience-edit.component';
+import { EditButtonComponent } from './components/common/edit-button/edit-button.component';
+import { DeleteButtonComponent } from './components/common/delete-button/delete-button.component';
+import { DeleteConfirmationComponent } from './components/common/delete-confirmation/delete-confirmation.component';
+import { DegreeAddComponent } from './components/home/main/education/degree-add/degree-add.component';
+import { DegreeEditComponent } from './components/home/main/education/degree/degree-edit/degree-edit.component';
+import { AddButtonComponent } from './components/common/add-button/add-button.component';
+import { ProjectAddComponent } from './components/home/main/projects/project-add/project-add.component';
+import { ProjectEditComponent } from './components/home/main/projects/project-item/project-edit/project-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +51,15 @@ import { ExperienceEditComponent } from './components/home/main/experiences/expe
     ExperiencesComponent,
     ExperienceItemComponent,
     ExperienceAddComponent,
-    ExperienceEditComponent
+    ExperienceEditComponent,
+    EditButtonComponent,
+    DeleteButtonComponent,
+    DeleteConfirmationComponent,
+    DegreeAddComponent,
+    DegreeEditComponent,
+    AddButtonComponent,
+    ProjectAddComponent,
+    ProjectEditComponent
   ],
   imports: [
     BrowserModule,
