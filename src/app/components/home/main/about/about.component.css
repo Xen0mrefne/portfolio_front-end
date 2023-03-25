@@ -37,36 +37,30 @@
     row-gap: 20px;
 }
 
-.tech-stacks {
+.technologies {
     display: inherit;
 
     grid-template-columns: 1fr;
     row-gap: 20px;
 }
 
-.tech-stacks .title {
+.technologies .title {
     margin-bottom: 10px;
 }
 
-.tech-stacks .stack {
-    list-style: none;
+
+.options {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.stack > li {
-    border:2px solid var(--green);
-    padding: 10px;
-    border-radius: 5px;
-
-    font-family: var(--font-2);
+    column-gap: 20px;
 }
 
 @media (min-width: 768px) {
 
-    .tech-stacks {
+    .technologies {
         display: inherit;
     
         grid-template-columns: 1fr 1fr;

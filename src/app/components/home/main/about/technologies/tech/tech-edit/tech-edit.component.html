@@ -1,0 +1,14 @@
+<div class="modal" >
+    <form (ngSubmit)="onSubmit()" >
+        <div class="user-input-group">
+            <div class="user-input">
+                <label for="position">Tech name:</label>
+                <input id="position" name="name" class="input" type="text" value="{{name}}" [(ngModel)]="name">
+            </div>
+        </div>
+        <div class="options">
+            <button type="submit" class="btn btn-green">Confirm</button>
+            <button type="button" class="btn btn-red" (click)="cancelEdit()">Cancel</button>
+        </div>
+    </form>
+</div>

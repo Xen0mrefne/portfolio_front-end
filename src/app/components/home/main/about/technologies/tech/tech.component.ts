@@ -1,19 +1,24 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Skill } from 'src/app/model/skill';
+import { Tech } from 'src/app/model/tech';
 
 @Component({
-  selector: 'app-skill-item',
-  templateUrl: './skill-item.component.html',
-  styleUrls: ['./skill-item.component.css']
+  selector: 'app-tech',
+  templateUrl: './tech.component.html',
+  styleUrls: ['./tech.component.css']
 })
-export class SkillItemComponent {
-  @Output() onEdit: EventEmitter<Skill> = new EventEmitter();
-  @Output() onDelete: EventEmitter<Skill> = new EventEmitter();
-  @Input() skill!: Skill;
+export class TechComponent {
+  @Output() onEdit: EventEmitter<Tech> = new EventEmitter();
+  @Output() onDelete: EventEmitter<Tech> = new EventEmitter();
   @Input() isLogged!: boolean;
+  @Input() tech!: Tech;
 
+  showOptions: boolean = false;
   editing: boolean = false;
   deleting: boolean = false;
+
+  toggleOptions(): void {
+    this.showOptions = !this.showOptions
+  }
 
   toggleEdit(): void {
     this.editing = !this.editing
@@ -25,8 +30,8 @@ export class SkillItemComponent {
     }
   }
 
-  confirmEdit(skill: Skill): void {
-    this.onEdit.emit(skill);
+  confirmEdit(tech: Tech): void {
+    this.onEdit.emit(tech);
     this.toggleEdit();
   }
 
@@ -41,7 +46,7 @@ export class SkillItemComponent {
   }
 
   confirmDelete(): void {
-    this.onDelete.emit(this.skill);
+    this.onDelete.emit(this.tech);
     this.toggleDelete();
   }
 }

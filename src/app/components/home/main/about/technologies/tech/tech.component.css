@@ -1,0 +1,26 @@
+.tech-container {
+    display: flex;
+    border:2px solid var(--green);
+    border-radius: 5px;
+}
+
+.tech {
+    display: block;
+    padding: 10px;
+    font-weight: 400;
+
+    font-family: var(--font-2);
+}
+
+.options {
+
+    display: flex;
+    align-items: center;
+    padding: 0px 2px;
+    column-gap: 1px;
+}
+
+.options > * {
+    transform: scale(0.8);
+}
+

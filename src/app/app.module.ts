@@ -31,6 +31,13 @@ import { DegreeEditComponent } from './components/home/main/education/degree/deg
 import { AddButtonComponent } from './components/common/add-button/add-button.component';
 import { ProjectAddComponent } from './components/home/main/projects/project-add/project-add.component';
 import { ProjectEditComponent } from './components/home/main/projects/project-item/project-edit/project-edit.component';
+import { SkillAddComponent } from './components/home/main/skills/skill-add/skill-add.component';
+import { SkillEditComponent } from './components/home/main/skills/skill-item/skill-edit/skill-edit.component';
+import { TechComponent } from './components/home/main/about/technologies/tech/tech.component';
+import { TechAddComponent } from './components/home/main/about/technologies/tech-add/tech-add.component';
+import { TechnologiesComponent } from './components/home/main/about/technologies/technologies.component';
+import { PersonCreateComponent } from './components/home/main/about/person-create/person-create.component';
+import { TechEditComponent } from './components/home/main/about/technologies/tech/tech-edit/tech-edit.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +66,14 @@ import { ProjectEditComponent } from './components/home/main/projects/project-it
     DegreeEditComponent,
     AddButtonComponent,
     ProjectAddComponent,
-    ProjectEditComponent
+    ProjectEditComponent,
+    SkillAddComponent,
+    SkillEditComponent,
+    TechComponent,
+    TechAddComponent,
+    TechnologiesComponent,
+    PersonCreateComponent,
+    TechEditComponent
   ],
   imports: [
     BrowserModule,

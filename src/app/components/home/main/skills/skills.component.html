@@ -1,4 +1,8 @@
-<h2 class="section-title">Habilidades</h2>
+<h2 class="section-title">Habilidades <app-add-button (onAddClick)="toggleAdd()"></app-add-button></h2>
 <div class="skill-grid">
-    <app-skill-item *ngFor="let skill of skills" [skill]="skill"></app-skill-item>
+    <app-skill-item *ngFor="let skill of skills" [skill]="skill" (onEdit)="editSkill($event)" (onDelete)="deleteSkill($event)"></app-skill-item>
 </div>
+<app-skill-add
+*ngIf="adding"
+(onCancelAdd)="toggleAdd()"
+(onAdd)="addSkill($event)"></app-skill-add>

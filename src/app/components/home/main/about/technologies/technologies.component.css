@@ -1,0 +1,30 @@
+:host {
+    display: inherit;
+
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+}
+
+.title {
+    margin-bottom: 30px;
+}
+
+
+
+.tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+
+    :host {
+        display: inherit;
+    
+        grid-template-columns: 1fr 1fr;
+        row-gap: 0px;
+        column-gap: 40px;
+    }
+}

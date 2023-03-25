@@ -1,0 +1,23 @@
+<div>
+    <h3 class="title">Front-End:</h3>
+    <div class="tech-list">
+        <app-tech
+        *ngFor="let tech of frontTechs"
+        [tech]="tech"
+        [isLogged]="isLogged"
+        (onEdit)="editTech($event)"
+        (onDelete)="deleteTech($event)"></app-tech>
+        <app-tech-add *ngIf="isLogged" (onAdd)="addTech($event)" [techType]="frontEndType"></app-tech-add>
+    </div>
+</div>
+<div>
+    <h3 class="title">Back-End:</h3>
+    <div class="tech-list">
+        <app-tech *ngFor="let tech of backTechs"
+        [tech]="tech"
+        [isLogged]="isLogged"
+        (onEdit)="editTech($event)"
+        (onDelete)="deleteTech($event)"></app-tech>
+        <app-tech-add *ngIf="isLogged" (onAdd)="addTech($event)" [techType]="backEndType"></app-tech-add>
+    </div>
+</div>

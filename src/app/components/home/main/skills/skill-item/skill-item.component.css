@@ -38,3 +38,12 @@
     stroke: var(--green);
     stroke-width: 32;
 }
+
+.options {
+    position: absolute;
+    top: 60%;
+    right: 25%;
+
+    display: flex;
+    column-gap: 20px;
+}

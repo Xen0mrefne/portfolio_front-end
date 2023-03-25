@@ -1,6 +1,19 @@
 <svg class="pie" viewBox="0 0 32 32">
-    <circle r="16" cx="16" cy="16" [ngStyle]="{'stroke-dasharray':skill.percentage + ' 100'}" />
+    <circle r="16" cx="16" cy="16" [ngStyle]="{'stroke-dasharray':skill.percent + ' 100'}" />
 </svg>
 <div class="name">
     <p>{{skill.name}}</p>
 </div>
+<div class="options">
+    <app-edit-button (onEditClick)="toggleEdit()"></app-edit-button>
+    <app-delete-button (onDeleteClick)="toggleDelete()"></app-delete-button>
+</div>
+<app-skill-edit
+*ngIf="editing"
+[skill]="skill"
+(onEditConfirm)="confirmEdit($event)"
+(onCancelEdit)="toggleEdit()"></app-skill-edit>
+<app-delete-confirmation
+*ngIf="deleting"
+(onConfirmDelete)="confirmDelete()"
+(onCancelDelete)="toggleDelete()"></app-delete-confirmation>
