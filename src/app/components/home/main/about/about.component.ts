@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Tech } from 'src/app/model/tech';
-import { TechType } from 'src/app/model/techType';
+import { LoaderType } from 'src/app/components/common/loader/loaderType';
 import { PersonService } from 'src/app/service/person.service';
 import { TokenService } from 'src/app/service/token.service';
 import { Person } from '../../../../model/person';
-import { PERSON } from './person_placeholder';
 
 @Component({
   selector: 'app-about',
@@ -13,29 +11,60 @@ import { PERSON } from './person_placeholder';
 })
 
 export class AboutComponent implements OnInit {
-  person: Person = PERSON
+  person!: Person;
+
+  spinner: LoaderType = LoaderType.spinner
 
   isLogged: boolean = false;
 
-  constructor (private personService:PersonService, private tokenService: TokenService) { }
+  infoEdit: boolean = false;
+  photoEdit: boolean = false;
+
+  constructor(private personService: PersonService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
       this.getPerson();
+    }, 2000)
 
-      if (this.tokenService.getToken()) {
-        this.isLogged = true;
-      } else {
-        this.isLogged = false;
-      }
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
+  }
+
+  toggleEdit(): void {
+    this.infoEdit = !this.infoEdit;
+  }
+
+  togglePhotoEdit(): void {
+    this.photoEdit = !this.photoEdit;
   }
 
   getPerson(): void {
-    this.personService.getPersons().subscribe({next: data => {
-      this.person = data[0]
-    }})
+    this.personService.getPersons().subscribe({
+      next: data => {
+        this.person = data[0]
+      }
+    })
   }
 
-  editPerson(): void {
+  editPerson(person: Person): void {
+    this.personService.update(person.id!, person).subscribe({
+      next: data => {
+        alert(data.message)
+        this.toggleEdit();
+        this.getPerson();
+      }, error: ({ error }) => {
+        console.log(error);
+        alert(error.message)
+      }
+    })
+  }
+
+  editPhoto(photoUrl: string): void {
+
   }
 
 }

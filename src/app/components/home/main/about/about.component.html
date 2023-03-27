@@ -1,15 +1,33 @@
-<div class="photo">
-    
+<div class="photo-container">
+    <div class="photo">
+        <img *ngIf="person" src="{{person.profileImage}}" alt="">
+        <img *ngIf="!person" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="">
+        <div class="overlay">
+            <app-edit-button (onEditClick)="togglePhotoEdit()"></app-edit-button>
+        </div>
+    </div>
 </div>
 <div class="title">
-    <h2>{{person.lastName + ", " + person.firstName}}</h2>
-    <h4>Técnico en Informática de Gestión</h4>
+    <h2 *ngIf="person">{{person.lastName + ", " + person.firstName}}</h2>
+    <h4 *ngIf="person">{{person.title}}</h4>
+    <app-loader *ngIf="!person" [type]="spinner"></app-loader>
 </div>
 <div class="info">
-    <p class="summary">{{person.about}}</p>
+    <p *ngIf="person" class="summary">{{person.about}}</p>
 
     <app-technologies></app-technologies>
 </div>
 <div class="options" *ngIf="isLogged">
-    <app-edit-button></app-edit-button>
+    <app-edit-button (onEditClick)="toggleEdit()"></app-edit-button>
 </div>
+<app-person-edit
+*ngIf="infoEdit"
+[person]="person"
+(onCancelEdit)="toggleEdit()"
+(onConfirmEdit)="editPerson($event)"></app-person-edit>
+
+<app-photo-edit
+*ngIf="photoEdit"
+[person]="person"
+(onCancelEdit)="togglePhotoEdit()"
+(onConfirmEdit)="editPhoto($event)"></app-photo-edit>

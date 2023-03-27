@@ -1,0 +1,27 @@
+<div class="modal">
+    <form (ngSubmit)="onSubmit()">
+        <div class="user-input-group">
+            <div class="user-input">
+                <label for="lastName">Apellido/s:</label>
+                <input id="lastName" name="lastName" class="input" type="text" [(ngModel)]="lastName" value="{{lastName}}">
+            </div>
+            <div class="user-input">
+                <label for="firstName">Nombre/s:</label>
+                <input id="firstName" name="firstName" class="input" type="text" [(ngModel)]="firstName"
+                    value="{{firstName}}">
+            </div>
+            <div class="user-input">
+                <label for="title">Título:</label>
+                <input id="title" name="title" [(ngModel)]="title" value="{{title}}" class="input">
+            </div>
+            <div class="user-input">
+                <label for="about">Sobre mi:</label>
+                <textarea class="input" name="about" id="about" [(ngModel)]="about" cols="30" rows="4">{{about}}</textarea>
+            </div>
+        </div>
+        <div class="options">
+            <button type="button" class="btn btn-red" (click)="closeModal()">Cancel</button>
+            <button type="submit" class="btn btn-green">Confirm</button>
+        </div>
+    </form>
+</div>

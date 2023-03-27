@@ -1,0 +1,25 @@
+.spinner {
+    display: flex;
+    column-gap: 10px;
+    padding: 10px;
+}
+
+.spinner .dot {
+    background-color: black;
+    width: 15px;
+    aspect-ratio: 1/1;
+
+    animation-name: spin;
+    animation-duration: 500ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

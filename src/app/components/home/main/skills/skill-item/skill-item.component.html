@@ -5,8 +5,8 @@
     <p>{{skill.name}}</p>
 </div>
 <div class="options">
-    <app-edit-button (onEditClick)="toggleEdit()"></app-edit-button>
-    <app-delete-button (onDeleteClick)="toggleDelete()"></app-delete-button>
+    <app-edit-button *ngIf="isLogged" (onEditClick)="toggleEdit()"></app-edit-button>
+    <app-delete-button *ngIf="isLogged" (onDeleteClick)="toggleDelete()"></app-delete-button>
 </div>
 <app-skill-edit
 *ngIf="editing"

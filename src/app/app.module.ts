@@ -36,8 +36,10 @@ import { SkillEditComponent } from './components/home/main/skills/skill-item/ski
 import { TechComponent } from './components/home/main/about/technologies/tech/tech.component';
 import { TechAddComponent } from './components/home/main/about/technologies/tech-add/tech-add.component';
 import { TechnologiesComponent } from './components/home/main/about/technologies/technologies.component';
-import { PersonCreateComponent } from './components/home/main/about/person-create/person-create.component';
+import { PersonEditComponent } from './components/home/main/about/person-edit/person-edit.component';
 import { TechEditComponent } from './components/home/main/about/technologies/tech/tech-edit/tech-edit.component';
+import { LoaderComponent } from './components/common/loader/loader.component';
+import { PhotoEditComponent } from './components/home/main/about/photo-edit/photo-edit.component';
 
 @NgModule({
   declarations: [
@@ -72,8 +74,10 @@ import { TechEditComponent } from './components/home/main/about/technologies/tec
     TechComponent,
     TechAddComponent,
     TechnologiesComponent,
-    PersonCreateComponent,
-    TechEditComponent
+    PersonEditComponent,
+    TechEditComponent,
+    LoaderComponent,
+    PhotoEditComponent
   ],
   imports: [
     BrowserModule,
