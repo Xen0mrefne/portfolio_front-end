@@ -2,16 +2,7 @@
 <p>{{project.dateCreated}}</p>
 <p>{{project.description}}</p>
 <button class="btn btn-green">Ir</button>
-<div class="options">
-    <app-edit-button *ngIf="isLogged" (onEditClick)="toggleEdit()"></app-edit-button>
-    <app-delete-button *ngIf="isLogged" (onDeleteClick)="toggleDelete()"></app-delete-button>
+<div class="options" *ngIf="isLogged">
+    <app-edit-button (onEditClick)="editProject()"></app-edit-button>
+    <app-delete-button (onDeleteClick)="deleteProject()"></app-delete-button>
 </div>
-<app-project-edit
-*ngIf="editing"
-[project]="project"
-(onEditConfirm)="confirmEdit($event)"
-(onCancelEdit)="toggleEdit()"></app-project-edit>
-<app-delete-confirmation
-*ngIf="deleting"
-(onCancelDelete)="toggleDelete()"
-(onConfirmDelete)="confirmDelete()"></app-delete-confirmation>

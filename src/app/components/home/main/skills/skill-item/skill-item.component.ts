@@ -12,36 +12,12 @@ export class SkillItemComponent {
   @Input() skill!: Skill;
   @Input() isLogged!: boolean;
 
-  editing: boolean = false;
-  deleting: boolean = false;
 
-  toggleEdit(): void {
-    this.editing = !this.editing
-
-    if(this.editing){
-      document.body.style.overflowY = "hidden"
-    } else {
-      document.body.style.overflowY = "scroll"
-    }
+  editSkill(): void {
+    this.onEdit.emit(this.skill);
   }
 
-  confirmEdit(skill: Skill): void {
-    this.onEdit.emit(skill);
-    this.toggleEdit();
-  }
-
-  toggleDelete(): void {
-    this.deleting = !this.deleting
-
-    if(this.deleting){
-      document.body.style.overflowY = "hidden"
-    } else {
-      document.body.style.overflowY = "scroll"
-    }
-  }
-
-  confirmDelete(): void {
+  deleteSkill(): void {
     this.onDelete.emit(this.skill);
-    this.toggleDelete();
   }
 }

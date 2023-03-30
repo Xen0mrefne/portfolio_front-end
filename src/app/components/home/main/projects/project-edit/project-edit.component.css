@@ -1,8 +1,9 @@
-@import url('../../../../../../common/css/modal.css');
+@import url('../../../../common/css/modal.css');
 
 form {
     display: flex;
     flex-direction: column;
+    text-align: start;
 }
 
 .user-input-group {
@@ -35,15 +36,4 @@ textarea {
     flex-basis: 0;
     flex-grow: 1;
     margin: 0px 5px;
-}
-
-.range {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    column-gap: 10px;
-}
-
-.percent {
-    font-size: 1.3rem;
 }

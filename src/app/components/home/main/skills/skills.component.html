@@ -1,8 +1,25 @@
 <h2 class="section-title">Habilidades <app-add-button *ngIf="isLogged" (onAddClick)="toggleAdd()"></app-add-button></h2>
 <div class="skill-grid">
-    <app-skill-item *ngFor="let skill of skills" [skill]="skill" (onEdit)="editSkill($event)" (onDelete)="deleteSkill($event)"></app-skill-item>
+    <app-skill-item
+    *ngFor="let skill of skills"
+    [isLogged]="isLogged"
+    [skill]="skill"
+    (onEdit)="toggleEdit($event)"
+    (onDelete)="toggleDelete($event)"></app-skill-item>
 </div>
+
 <app-skill-add
 *ngIf="adding"
 (onCancelAdd)="toggleAdd()"
 (onAdd)="addSkill($event)"></app-skill-add>
+
+<app-skill-edit
+*ngIf="editing"
+[skill]="selectedSkill"
+(onEditConfirm)="editSkill($event)"
+(onCancelEdit)="toggleEdit()"></app-skill-edit>
+
+<app-delete-confirmation
+*ngIf="deleting"
+(onConfirmDelete)="deleteSkill()"
+(onCancelDelete)="toggleDelete()"></app-delete-confirmation>

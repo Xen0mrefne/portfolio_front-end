@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoaderType } from 'src/app/components/common/loader/loaderType';
+import { Alert } from 'src/app/model/alert';
+import { AlertService } from 'src/app/service/alert.service';
 import { PersonService } from 'src/app/service/person.service';
 import { TokenService } from 'src/app/service/token.service';
 import { Person } from '../../../../model/person';
@@ -16,14 +18,19 @@ export class AboutComponent implements OnInit {
   spinner: LoaderType = LoaderType.spinner
 
   isLogged: boolean = false;
-
+  loading: boolean = true;
   infoEdit: boolean = false;
   photoEdit: boolean = false;
 
-  constructor(private personService: PersonService, private tokenService: TokenService) { }
+  constructor(
+    private personService: PersonService,
+    private tokenService: TokenService,
+    private alertService: AlertService
+    ) { }
 
   ngOnInit(): void {
     setTimeout(() => {
+      this.loading = true;
       this.getPerson();
     }, 2000)
 
@@ -36,16 +43,21 @@ export class AboutComponent implements OnInit {
 
   toggleEdit(): void {
     this.infoEdit = !this.infoEdit;
+
+    document.body.style.overflowY = this.infoEdit ? "hidden" : "scroll"
   }
 
   togglePhotoEdit(): void {
     this.photoEdit = !this.photoEdit;
+
+    document.body.style.overflowY = this.photoEdit ? "hidden" : "scroll"
   }
 
   getPerson(): void {
     this.personService.getPersons().subscribe({
       next: data => {
         this.person = data[0]
+        this.loading = false;
       }
     })
   }
@@ -53,18 +65,30 @@ export class AboutComponent implements OnInit {
   editPerson(person: Person): void {
     this.personService.update(person.id!, person).subscribe({
       next: data => {
-        alert(data.message)
+        this.alertService.setAlert(new Alert(data.message, false))
         this.toggleEdit();
         this.getPerson();
       }, error: ({ error }) => {
-        console.log(error);
+        this.alertService.setAlert(new Alert(error.message, true))
         alert(error.message)
       }
     })
   }
 
-  editPhoto(photoUrl: string): void {
+  editPhoto(imageUrl: string): void {
+    const updatedPerson = {...this.person}
+    updatedPerson.profileImage = imageUrl;
 
+    this.personService.update(this.person.id!, updatedPerson).subscribe({
+      next: data => {
+        this.alertService.setAlert(new Alert(data.message, false))
+        this.togglePhotoEdit();
+        this.getPerson();
+      }, error: ({ error }) => {
+        this.alertService.setAlert(new Alert(error.message, true))
+        alert(error.message)
+      }
+    })
   }
 
 }

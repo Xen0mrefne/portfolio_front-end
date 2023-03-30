@@ -4,10 +4,19 @@
     *ngFor="let experience of experiences"
     [experience]="experience"
     [isLogged]="isLogged"
-    (onExperienceEdit)="editExperience($event)"
-    (onExperienceDelete)="deleteExperience($event)"></app-experience-item>
+    (onExperienceEdit)="toggleEdit($event)"
+    (onExperienceDelete)="toggleDelete($event)"></app-experience-item>
 </div>
 <app-experience-add
 *ngIf="adding"
 (onCancelAdd)="toggleAdd()"
 (onAdd)="addExperience($event)"></app-experience-add>
+<app-experience-edit
+*ngIf="editing"
+(onEdit)="editExperience($event)"
+(onCancelEdit)="toggleEdit()"
+[experience]="selectedExperience"></app-experience-edit>
+<app-delete-confirmation
+*ngIf="deleting"
+(onConfirmDelete)="deleteExperience()"
+(onCancelDelete)="toggleDelete()"></app-delete-confirmation>

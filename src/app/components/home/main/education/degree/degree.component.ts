@@ -12,34 +12,11 @@ export class DegreeComponent {
   @Input() degree!: Degree;
   @Input() isLogged!: boolean;
 
-  editing: boolean = false;
-  deleting: boolean = false;
-
-  toggleEdit(): void {
-    this.editing = !this.editing;
-    if (this.editing) {
-      document.body.style.overflowY = "hidden"
-    } else {
-      document.body.style.overflowY = "scroll"
-    }
+  editDegree(): void {
+    this.onEdit.emit(this.degree);
   }
 
-  toggleDelete(): void {
-    this.deleting = !this.deleting;
-    if (this.deleting) {
-      document.body.style.overflowY = "hidden"
-    } else {
-      document.body.style.overflowY = "scroll"
-    }
-  }
-
-  confirmEdit(degree: Degree): void {
-    this.toggleEdit();
-    this.onEdit.emit(degree);
-  }
-
-  confirmDelete(): void {
-    this.toggleDelete();
+  deleteDegree(): void {
     this.onDelete.emit(this.degree)
   }
 

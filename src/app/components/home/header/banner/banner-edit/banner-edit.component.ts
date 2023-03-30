@@ -3,23 +3,24 @@ import { Person } from 'src/app/model/person';
 import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
-  selector: 'app-photo-edit',
-  templateUrl: './photo-edit.component.html',
-  styleUrls: ['./photo-edit.component.css']
+  selector: 'app-banner-edit',
+  templateUrl: './banner-edit.component.html',
+  styleUrls: ['./banner-edit.component.css']
 })
-export class PhotoEditComponent {
+export class BannerEditComponent {
   @Output() onConfirmEdit: EventEmitter<string> = new EventEmitter();
   @Output() onCancelEdit: EventEmitter<any> = new EventEmitter();
   @Input() person!: Person;
+  @Input() prevImageUrl!: string;
 
-  photoUrl!: string;
+  newImage: any;
+  imageUrl!: string;
 
-  photo: string | ArrayBuffer | null = ""
 
   constructor (private storageService: StorageService) {}
 
   ngOnInit(): void {
-    this.photoUrl = this.person.profileImage;
+    this.imageUrl = this.person.bannerImage;
   }
 
   uploadImage(e: any): void {
@@ -28,18 +29,19 @@ export class PhotoEditComponent {
     reader.readAsDataURL(file)
     reader.onloadend = () => {
       console.log(reader.result)
-      this.photo = reader.result
-      this.storageService.uploadImage("OMG", this.photo)
+      this.newImage = reader.result
+      this.storageService.uploadBannerImage(this.person.id! + "_" + Date.now(), this.newImage).then(url => {
+        console.log(url);
+        this.imageUrl = url;
+      })
     }
-    console.log(e.target)
   }
 
   onSubmit(): void {
-    this.onConfirmEdit.emit(this.photoUrl)
+    this.onConfirmEdit.emit(this.imageUrl)
   }
 
   closeModal(): void {
     this.onCancelEdit.emit();
   }
-
 }

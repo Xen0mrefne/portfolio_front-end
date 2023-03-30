@@ -4,11 +4,23 @@
         <app-project-item
         *ngFor="let project of projects"
         [project]="project"
-        (onEdit)="editProject($event)"
-        (onDelete)="deleteProject($event)"></app-project-item>
+        [isLogged]="isLogged"
+        (onEdit)="toggleEdit($event)"
+        (onDelete)="toggleDelete($event)"></app-project-item>
     </div>
 </section>
 <app-project-add
 *ngIf="adding"
 (onAdd)="addProject($event)"
 (onCancelAdd)="toggleAdd()"></app-project-add>
+
+<app-project-edit
+*ngIf="editing"
+[project]="selectedProject"
+(onEditConfirm)="editProject($event)"
+(onCancelEdit)="toggleEdit()"></app-project-edit>
+
+<app-delete-confirmation
+*ngIf="deleting"
+(onCancelDelete)="toggleDelete()"
+(onConfirmDelete)="deleteProject()"></app-delete-confirmation>

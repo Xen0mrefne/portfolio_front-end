@@ -2,15 +2,6 @@
 <p>{{experience.company}}</p>
 <p>{{experience.description}}</p>
 <div class="options" *ngIf="isLogged">
-    <app-edit-button (onEditClick)="toggleEdit()"></app-edit-button>
-    <app-delete-button (onDeleteClick)="toggleDelete()"></app-delete-button>
+    <app-edit-button (onEditClick)="editExperience()"></app-edit-button>
+    <app-delete-button (onDeleteClick)="deleteExperience()"></app-delete-button>
 </div>
-<app-experience-edit
-*ngIf="editing"
-(onEdit)="confirmEdit($event)"
-(onCancelEdit)="toggleEdit()"
-[experience]="experience"></app-experience-edit>
-<app-delete-confirmation
-*ngIf="deleting"
-(onConfirmDelete)="confirmDelete()"
-(onCancelDelete)="toggleDelete()"></app-delete-confirmation>

@@ -16,8 +16,14 @@
         <app-tech *ngFor="let tech of backTechs"
         [tech]="tech"
         [isLogged]="isLogged"
-        (onEdit)="editTech($event)"
+        (onEdit)="toggleEdit($event)"
         (onDelete)="deleteTech($event)"></app-tech>
         <app-tech-add *ngIf="isLogged" (onAdd)="addTech($event)" [techType]="backEndType"></app-tech-add>
     </div>
 </div>
+
+<app-tech-edit
+*ngIf="editing"
+[tech]="selectedTech"
+(onConfirmEdit)="editTech($event)"
+(onCancelEdit)="toggleEdit()"></app-tech-edit>

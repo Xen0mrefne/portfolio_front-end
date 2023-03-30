@@ -1,8 +1,8 @@
 <div class="photo-container">
     <div class="photo">
         <img *ngIf="person" src="{{person.profileImage}}" alt="">
-        <img *ngIf="!person" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="">
-        <div class="overlay">
+        <img *ngIf="!person" class="placeholder" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="">
+        <div class="overlay" *ngIf="isLogged && !loading">
             <app-edit-button (onEditClick)="togglePhotoEdit()"></app-edit-button>
         </div>
     </div>
@@ -17,7 +17,7 @@
 
     <app-technologies></app-technologies>
 </div>
-<div class="options" *ngIf="isLogged">
+<div class="options" *ngIf="isLogged && !loading">
     <app-edit-button (onEditClick)="toggleEdit()"></app-edit-button>
 </div>
 <app-person-edit
@@ -26,8 +26,8 @@
 (onCancelEdit)="toggleEdit()"
 (onConfirmEdit)="editPerson($event)"></app-person-edit>
 
-<app-photo-edit
+<app-image-edit
 *ngIf="photoEdit"
 [person]="person"
 (onCancelEdit)="togglePhotoEdit()"
-(onConfirmEdit)="editPhoto($event)"></app-photo-edit>
+(onConfirmEdit)="editPhoto($event)"></app-image-edit>

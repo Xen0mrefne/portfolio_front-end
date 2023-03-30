@@ -16,8 +16,11 @@ export class TechnologiesComponent {
   frontEndType: TechType = TechType.FRONTEND;
   backEndType: TechType = TechType.BACKEND;
 
-  isLogged: boolean = false
+  isLogged: boolean = false;
+  editing: boolean = false;
+  deleting: boolean = false;
 
+  selectedTech!: Tech;
 
   constructor (private techService: TechnologiesService, private tokenService: TokenService) {}
 
@@ -47,9 +50,11 @@ export class TechnologiesComponent {
     }})
   }
 
+
   editTech(tech: Tech): void {
     this.techService.update(tech.id!, tech).subscribe({next: data => {
       this.getTechs();
+      this.toggleEdit();
     }, error: ({error}) => {
       alert(error.message)
     }})
@@ -62,5 +67,15 @@ export class TechnologiesComponent {
     }, error: ({error}) => {
       alert(error.message)
     }})
+  }
+
+  toggleEdit(tech?: Tech): void {
+    this.editing = !this.editing
+
+    if (tech) {
+      this.selectedTech = tech;
+    }
+
+    document.body.style.overflowY = this.editing ? "hidden" : "scroll"
   }
 }

@@ -2,16 +2,7 @@
     <span *ngIf="!isLogged" class="tech">{{tech.name}}</span>
     <button type="button" (click)="toggleOptions()" *ngIf="isLogged" class="btn tech">{{tech.name}}</button>
     <div class="options" *ngIf="showOptions">
-        <app-edit-button (onEditClick)="toggleEdit()"></app-edit-button>
-        <app-delete-button (onDeleteClick)="toggleDelete()"></app-delete-button>
+        <app-edit-button (onEditClick)="editTech()"></app-edit-button>
+        <app-delete-button (onDeleteClick)="deleteTech()"></app-delete-button>
     </div>
 </div>
-<app-tech-edit
-*ngIf="editing"
-[tech]="tech"
-(onConfirmEdit)="confirmEdit($event)"
-(onCancelEdit)="toggleEdit()"></app-tech-edit>
-<app-delete-confirmation
-*ngIf="deleting"
-(onConfirmDelete)="confirmDelete()"
-(onCancelDelete)="toggleDelete()"></app-delete-confirmation>

@@ -12,36 +12,11 @@ export class ProjectItemComponent {
   @Input() project!: Project;
   @Input() isLogged!: boolean;
 
-  editing: boolean = false;
-  deleting: boolean = false;
-
-  toggleEdit(): void {
-    this.editing = !this.editing
-
-    if(this.editing){
-      document.body.style.overflowY = "hidden"
-    } else {
-      document.body.style.overflowY = "scroll"
-    }
+  editProject(): void {
+    this.onEdit.emit(this.project);
   }
 
-  confirmEdit(project: Project): void {
-    this.onEdit.emit(project);
-    this.toggleEdit();
-  }
-
-  toggleDelete(): void {
-    this.deleting = !this.deleting
-
-    if(this.deleting){
-      document.body.style.overflowY = "hidden"
-    } else {
-      document.body.style.overflowY = "scroll"
-    }
-  }
-
-  confirmDelete(): void {
+  deleteProject(): void {
     this.onDelete.emit(this.project);
-    this.toggleDelete();
   }
 }

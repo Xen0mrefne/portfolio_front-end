@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Alert } from 'src/app/model/alert';
+import { AlertService } from 'src/app/service/alert.service';
 import { DegreeService } from 'src/app/service/degree.service';
 import { TokenService } from 'src/app/service/token.service';
 import { Degree } from '../../../../model/degree'
@@ -12,10 +14,18 @@ import { DEGREES } from './degree_list';
 export class EducationComponent {
   degrees!: Degree[];
 
-  constructor(private degreeService: DegreeService, private tokenService: TokenService) { }
+  constructor(
+    private degreeService: DegreeService,
+    private tokenService: TokenService,
+    private alertService: AlertService
+    ) { }
 
   isLogged: boolean = false;
   adding: boolean = false;
+  editing: boolean = false;
+  deleting: boolean = false;
+
+  selectedDegree!: Degree;
 
   ngOnInit(): void {
     this.getDegrees();
@@ -33,43 +43,61 @@ export class EducationComponent {
 
   toggleAdd(): void {
     this.adding = !this.adding
-    if (this.adding) {
-      document.body.style.overflowY = "hidden"
-    } else {
-      document.body.style.overflowY = "scroll"
-    }
+
+    document.body.style.overflowY = this.adding ? "hidden" : "scroll"
   }
 
   addDegree(degree: Degree): void {
     this.degreeService.save(degree).subscribe({next: data => {
-      alert(data.message)
+      this.alertService.setAlert(new Alert(data.message, false))
       this.toggleAdd();
       this.getDegrees();
-    }, error: err => {
-      alert(err.error.message)
-      console.log(err)
-      this.toggleAdd();
+    }, error: ({error}) => {
+      this.alertService.setAlert(new Alert(error.message, true))
+      console.log(error)
     }})
   }
 
   editDegree(degree: Degree): void {
     this.degreeService.update(degree.id!, degree).subscribe({next: data => {
-      alert(data.message)
+      this.alertService.setAlert(new Alert(data.message, false))
       this.getDegrees();
-    }, error: err => {
-      alert(err.error.message)
-      console.log(err)
+      this.toggleEdit();
+    }, error: ({error}) => {
+      this.alertService.setAlert(new Alert(error.message, true))
+      console.log(error)
     }})
   }
 
-  deleteDegree(degree: Degree): void {
-    this.degreeService.delete(degree.id!).subscribe({next: data => {
-      alert(data.message)
+  deleteDegree(): void {
+    this.degreeService.delete(this.selectedDegree.id!).subscribe({next: data => {
+      this.alertService.setAlert(new Alert(data.message, false))
       this.getDegrees();
-    }, error: err => {
-      alert(err.error.message)
-      console.log(err)
+      this.toggleDelete();
+    }, error: ({error}) => {
+      this.alertService.setAlert(new Alert(error.message, true))
+      console.log(error)
     }})
+  }
+
+  toggleEdit(degree?: Degree): void {
+    this.editing = !this.editing;
+
+    if (degree) {
+      this.selectedDegree = degree
+    }
+
+    document.body.style.overflowY = this.editing ? "hidden" : "scroll"
+  }
+
+  toggleDelete(degree?: Degree): void {
+    this.deleting = !this.deleting;
+
+    if (degree) {
+      this.selectedDegree = degree
+    }
+
+    document.body.style.overflowY = this.deleting ? "hidden" : "scroll"
   }
 
 }

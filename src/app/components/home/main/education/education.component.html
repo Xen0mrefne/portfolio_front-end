@@ -4,11 +4,22 @@
     *ngFor="let degree of degrees"
     [degree]="degree"
     [isLogged]="isLogged"
-    (onEdit)="editDegree($event)"
-    (onDelete)="deleteDegree($event)"></app-degree>
+    (onEdit)="toggleEdit($event)"
+    (onDelete)="toggleDelete($event)"></app-degree>
 </div>
 <app-degree-add
 *ngIf="adding"
 (onCancelAdd)="toggleAdd()"
 (onAdd)="addDegree($event)"
 ></app-degree-add>
+
+<app-degree-edit
+*ngIf="editing"
+[degree]="selectedDegree"
+(onCancelEdit)="toggleEdit()"
+(onEdit)="editDegree($event)"></app-degree-edit>
+
+<app-delete-confirmation
+*ngIf="deleting"
+(onConfirmDelete)="deleteDegree()"
+(onCancelDelete)="toggleDelete()"></app-delete-confirmation>

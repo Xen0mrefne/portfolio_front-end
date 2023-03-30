@@ -4,9 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/home/header/header.component';
 import { NavbarComponent } from './components/home/header/navbar/navbar.component';
-import { MainComponent } from './components/home/main/main.component';
 import { BannerComponent } from './components/home/header/banner/banner.component';
 import { AboutComponent } from './components/home/main/about/about.component';
 import { EducationComponent } from './components/home/main/education/education.component';
@@ -22,31 +20,31 @@ import { interceptorProvider } from './service/interceptor-service';
 import { ExperiencesComponent } from './components/home/main/experiences/experiences.component';
 import { ExperienceItemComponent } from './components/home/main/experiences/experience-item/experience-item.component';
 import { ExperienceAddComponent } from './components/home/main/experiences/experience-add/experience-add.component';
-import { ExperienceEditComponent } from './components/home/main/experiences/experience-item/experience-edit/experience-edit.component';
+import { ExperienceEditComponent } from './components/home/main/experiences/experience-edit/experience-edit.component';
 import { EditButtonComponent } from './components/common/edit-button/edit-button.component';
 import { DeleteButtonComponent } from './components/common/delete-button/delete-button.component';
 import { DeleteConfirmationComponent } from './components/common/delete-confirmation/delete-confirmation.component';
 import { DegreeAddComponent } from './components/home/main/education/degree-add/degree-add.component';
-import { DegreeEditComponent } from './components/home/main/education/degree/degree-edit/degree-edit.component';
+import { DegreeEditComponent } from './components/home/main/education/degree-edit/degree-edit.component';
 import { AddButtonComponent } from './components/common/add-button/add-button.component';
 import { ProjectAddComponent } from './components/home/main/projects/project-add/project-add.component';
-import { ProjectEditComponent } from './components/home/main/projects/project-item/project-edit/project-edit.component';
+import { ProjectEditComponent } from './components/home/main/projects/project-edit/project-edit.component';
 import { SkillAddComponent } from './components/home/main/skills/skill-add/skill-add.component';
-import { SkillEditComponent } from './components/home/main/skills/skill-item/skill-edit/skill-edit.component';
+import { SkillEditComponent } from './components/home/main/skills/skill-edit/skill-edit.component';
 import { TechComponent } from './components/home/main/about/technologies/tech/tech.component';
 import { TechAddComponent } from './components/home/main/about/technologies/tech-add/tech-add.component';
 import { TechnologiesComponent } from './components/home/main/about/technologies/technologies.component';
 import { PersonEditComponent } from './components/home/main/about/person-edit/person-edit.component';
-import { TechEditComponent } from './components/home/main/about/technologies/tech/tech-edit/tech-edit.component';
+import { TechEditComponent } from './components/home/main/about/technologies/tech-edit/tech-edit.component';
 import { LoaderComponent } from './components/common/loader/loader.component';
-import { PhotoEditComponent } from './components/home/main/about/photo-edit/photo-edit.component';
+import { ImageEditComponent } from './components/home/main/about/image-edit/image-edit.component';
+import { BannerEditComponent } from './components/home/header/banner/banner-edit/banner-edit.component';
+import { AlertComponent } from './components/common/alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     NavbarComponent,
-    MainComponent,
     BannerComponent,
     AboutComponent,
     EducationComponent,
@@ -77,7 +75,9 @@ import { PhotoEditComponent } from './components/home/main/about/photo-edit/phot
     PersonEditComponent,
     TechEditComponent,
     LoaderComponent,
-    PhotoEditComponent
+    ImageEditComponent,
+    BannerEditComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-@import url('../../../../../common/css/modal.css');
+@import url('../../../../common/css/modal.css');
 
 form {
     display: flex;
@@ -18,13 +18,9 @@ form {
     row-gap: 10px;
 }
 
-input, textarea {
+input {
     font-family: var(--font-1);
     font-size: 1rem;
-}
-
-textarea {
-    resize: none;
 }
 
 .options {

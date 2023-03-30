@@ -1,3 +1,13 @@
-<div class="banner">
-    <p style="color: white;">Imagen de portada</p>
+<div class="banner" [ngStyle]="{'background-image': person ? 'url(' + person.bannerImage + ')' : ''}">
+    <!-- <img *ngIf="person" src="{{person.bannerImage}}" alt="">
+    <img *ngIf="!person" src="" alt=""> -->
+    <div class="options" *ngIf="isLogged">
+        <app-edit-button (onEditClick)="toggleBannerEdit()"></app-edit-button>
+    </div>
 </div>
+
+<app-banner-edit
+*ngIf="bannerEdit"
+[person]="person"
+(onCancelEdit)="toggleBannerEdit()"
+(onConfirmEdit)="editBanner($event)"></app-banner-edit>

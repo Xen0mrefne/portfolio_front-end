@@ -13,40 +13,17 @@ export class TechComponent {
   @Input() tech!: Tech;
 
   showOptions: boolean = false;
-  editing: boolean = false;
-  deleting: boolean = false;
 
   toggleOptions(): void {
     this.showOptions = !this.showOptions
   }
 
-  toggleEdit(): void {
-    this.editing = !this.editing
 
-    if(this.editing){
-      document.body.style.overflowY = "hidden"
-    } else {
-      document.body.style.overflowY = "scroll"
-    }
+  editTech(): void {
+    this.onEdit.emit(this.tech);
   }
 
-  confirmEdit(tech: Tech): void {
-    this.onEdit.emit(tech);
-    this.toggleEdit();
-  }
-
-  toggleDelete(): void {
-    this.deleting = !this.deleting
-
-    if(this.deleting){
-      document.body.style.overflowY = "hidden"
-    } else {
-      document.body.style.overflowY = "scroll"
-    }
-  }
-
-  confirmDelete(): void {
+  deleteTech(): void {
     this.onDelete.emit(this.tech);
-    this.toggleDelete();
   }
 }

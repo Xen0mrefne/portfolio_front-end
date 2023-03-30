@@ -5,10 +5,19 @@
 }
 
 .banner {
+    position: relative;
     background-color: #8a5422;
     flex-grow: 1;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-position: 50%;
+}
+
+.options {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }

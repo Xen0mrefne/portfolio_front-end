@@ -9,19 +9,10 @@
     </svg>
 </div>
 <div class="options" *ngIf="isLogged">
-    <app-edit-button (onEditClick)="toggleEdit()"></app-edit-button>
-    <app-delete-button (onDeleteClick)="toggleDelete()"></app-delete-button>
+    <app-edit-button (onEditClick)="editDegree()"></app-edit-button>
+    <app-delete-button (onDeleteClick)="deleteDegree()"></app-delete-button>
 </div>
 <div class="info">
     <h3 class="institution">{{degree.title}}</h3>
     <p>{{degree.institution}}</p>
 </div>
-<app-degree-edit
-*ngIf="editing"
-[degree]="degree"
-(onCancelEdit)="toggleEdit()"
-(onEdit)="confirmEdit($event)"></app-degree-edit>
-<app-delete-confirmation
-*ngIf="deleting"
-(onConfirmDelete)="confirmDelete()"
-(onCancelDelete)="toggleDelete()"></app-delete-confirmation>
