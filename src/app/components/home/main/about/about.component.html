@@ -1,6 +1,6 @@
 <div class="photo-container">
     <div class="photo">
-        <img *ngIf="person" src="{{person.profileImage}}" alt="">
+        <img *ngIf="person" src="{{person.profileImageUrl}}" alt="">
         <img *ngIf="!person" class="placeholder" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="">
         <div class="overlay" *ngIf="isLogged && !loading">
             <app-edit-button (onEditClick)="togglePhotoEdit()"></app-edit-button>

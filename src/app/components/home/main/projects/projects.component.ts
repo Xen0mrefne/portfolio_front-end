@@ -27,6 +27,7 @@ export class ProjectsComponent {
   selectedProject!: Project;
 
   ngOnInit(): void {
+    this.adding = this.editing = this.deleting = false;
     this.getProjects();
 
     if (this.tokenService.getToken()) {

@@ -13,10 +13,10 @@ export class StorageService {
 
   constructor() { }
 
-  async uploadProfileImage(name: string, image: any): Promise<any> {
+  async uploadImage(path: string, name: string, image: any): Promise<any> {
 
     try {
-      const res = await this.storageRef.child("users/profile/" + name).putString(image, "data_url");
+      const res = await this.storageRef.child(path + name).putString(image, "data_url");
       console.log(res);
       return await res.ref.getDownloadURL();
     } catch (err) {
@@ -26,16 +26,12 @@ export class StorageService {
 
   }
 
-  async uploadBannerImage(name: string, image: any): Promise<any> {
+  async deleteImage(path: string, name: string): Promise<void> {
 
-    try {
-      const res = await this.storageRef.child("users/banner/" + name).putString(image, "data_url");
-      console.log(res);
-      return await res.ref.getDownloadURL();
-    } catch (err) {
-        console.log(err)
-        return null;
-    }
-
+      const res = await this.storageRef.child(path + name).delete().catch((error) => {
+        console.log(error)
+      })
+      console.log("Delete: " + res)
+      
   }
 }

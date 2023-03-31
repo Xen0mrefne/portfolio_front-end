@@ -8,25 +8,26 @@
 /* _-_- VAR -_-_ */
 
 :root {
-    --white: hsl(0, 0%, 90%);
+    --white: hsl(0, 0%, 100%);
     --gray: hsl(0, 0%, 20%);
     --black: hsl(0, 0%, 10%);
-    --red: rgb(225, 100, 100);
+    --red: rgb(225, 70, 70);
     --red-light: rgb(255, 150, 150);
-    --green: rgb(100, 225, 100);
+    --green: rgb(70, 225, 70);
     --green-light: rgb(150, 255, 150);
-    --blue: rgb(100, 100, 225);
+    --blue: rgb(70, 70, 225);
     --blue-light: rgb(150, 150, 255);
     --chocolate: #8a5422;
     --chocolate-opacity: #8a54225f;
     --chocolate-light: #D68E4B;
     --chocolate-light-opacity: #D68E4B5f;
-    --red-opacity: rgba(225, 100, 100, 0.4);
+    --red-opacity: rgba(225, 70, 70, 0.4);
     --red-light-opacity: rgba(255, 150, 150, 0.4);
-    --green-opacity: rgba(100, 225, 100, 0.4);
+    --green-opacity: rgba(70, 225, 70, 0.4);
     --green-light-opacity: rgba(150, 255, 150, 0.4);
-    --blue-opacity: rgba(100, 100, 225, 0.4);
+    --blue-opacity: rgba(70, 70, 225, 0.4);
     --blue-light-opacity: rgba(150, 150, 255, 0.4);
+    --black-opacity: hsla(0, 0%, 10%, 0.15);
     --color-1: var(--blue);
     --color-1-opacity: var(--blue-opacity);
     --color-2: var(--blue-light);
@@ -52,6 +53,7 @@ a {
     color: var(--black);
 }
 
+
 /* _-_- ALL -_-_ */
 
 .bg-light {
@@ -69,8 +71,11 @@ a {
     font-size: 16px;
     font-weight: 600;
     border: none;
+    border-radius: 5px;
     padding: 10px;
     cursor: pointer;
+
+    transition: background-color 150ms, box-shadow 150ms;
 }
 
 .btn-circle {
@@ -84,41 +89,121 @@ a {
     background-color: var(--gray);
 }
 
-.btn-c-1 {
-    background-color: var(--color-1);
+/* _-_-BUTTON COLORS-_-_ */
+
+/* RED */
+
+.btn-red, .btn-red svg path {
+    color: var(--red);
+    stroke: var(--red);
 }
 
-.btn-c-1:hover {
-    background-color: var(--color-1-opacity);
-    outline: 2px solid var(--color-1);
-}
-
-.btn-red {
+.btn-red.btn-fill {
     background-color: var(--red);
+    color: var(--white);
 }
 
-.btn-red:hover {
-    background-color: var(--red-light);
-    outline: 2px solid var(--red);
+.btn-red.btn-fill:hover {
+    box-shadow: 0px 0px 10px 0px var(--red);
 }
 
-.btn-green {
+.btn-red.btn-fill:active {
+    box-shadow: 0px 0px 15px 0px var(--red);
+}
+
+.btn-red.btn-fill svg path {
+    stroke: var(--white);
+}
+
+.btn-hover-red:hover {
+    background-color: var(--red-opacity);
+}
+
+/* GREEN */
+
+.btn-green, .btn-green svg path {
+    color: var(--green);
+    stroke: var(--green);
+}
+
+.btn-green.btn-fill {
     background-color: var(--green);
+    color: var(--white);
 }
 
-.btn-green:hover {
-    background-color: var(--green-light);
-    outline: 2px solid var(--green);
+.btn-green.btn-fill:hover {
+    box-shadow: 0px 0px 10px 0px var(--green);
 }
 
-.btn-blue {
+.btn-green.btn-fill:active {
+    box-shadow: 0px 0px 15px 0px var(--green);
+}
+
+.btn-green.btn-fill svg path {
+    stroke: var(--white);
+}
+
+.btn-hover-green:hover {
+    background-color: var(--green-opacity);
+}
+
+/* BLUE */
+
+.btn-blue, .btn-blue svg path {
+    color: var(--blue);
+    stroke: var(--blue);
+}
+
+.btn-blue.btn-fill {
     background-color: var(--blue);
+    color: var(--white);
 }
 
-.btn-blue:hover {
-    background-color: var(--blue-light);
-    outline: 2px solid var(--blue);
+.btn-blue.btn-fill:hover {
+    box-shadow: 0px 0px 10px 0px var(--blue);
 }
+
+.btn-blue.btn-fill:active {
+    box-shadow: 0px 0px 15px 0px var(--blue);
+}
+
+.btn-blue.btn-fill svg path {
+    stroke: var(--white);
+}
+
+.btn-hover-blue:hover {
+    background-color: var(--blue-opacity);
+}
+
+/* BLACK */
+
+.btn-black, .btn-black svg path {
+    color: var(--black);
+    stroke: var(--black);
+}
+
+.btn-black.btn-fill {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.btn-black.btn-fill:hover {
+    box-shadow: 0px 0px 10px 0px var(--black);
+}
+
+.btn-black.btn-fill:active {
+    box-shadow: 0px 0px 15px 0px var(--black);
+}
+
+.btn-black.btn-fill svg path {
+    stroke: var(--white);
+}
+
+.btn-hover-black:hover {
+    background-color: var(--black-opacity);
+}
+
+
 
 .cursor-pointer {
     cursor: pointer;

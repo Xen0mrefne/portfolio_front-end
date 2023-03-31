@@ -6,12 +6,12 @@
 
 .photo-container {
     position: absolute;
-    top: -100px;
-    left: 25px;
+    top: -60px;
+    left: 15px;
 
     background-color: white;
-    width: 175px;
-    height: 175px;
+    width: 125px;
+    height: 125px;
     border: 10px solid white;
     border-radius: 50%;
     overflow: hidden;
@@ -90,6 +90,14 @@ img.placeholder {
 }
 
 @media (min-width: 768px) {
+
+    .photo-container {
+        top: -100px;
+        left: 25px;
+    
+        width: 175px;
+        height: 175px;
+    }
 
     .technologies {
         display: inherit;

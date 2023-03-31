@@ -1,7 +1,7 @@
 <h3 class="project-title">{{project.name}}</h3>
 <p>{{project.dateCreated}}</p>
 <p>{{project.description}}</p>
-<button class="btn btn-green">Ir</button>
+<button class="btn btn-black btn-fill">Ir</button>
 <div class="options" *ngIf="isLogged">
     <app-edit-button (onEditClick)="editProject()"></app-edit-button>
     <app-delete-button (onDeleteClick)="deleteProject()"></app-delete-button>

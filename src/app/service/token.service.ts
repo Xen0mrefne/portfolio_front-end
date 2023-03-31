@@ -49,6 +49,6 @@ export class TokenService {
 
   public logOut():void {
     window.sessionStorage.clear();
-
+    this.router.navigate(['login'])
   }
 }

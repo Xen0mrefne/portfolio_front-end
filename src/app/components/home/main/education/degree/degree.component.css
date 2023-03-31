@@ -24,8 +24,20 @@
     aspect-ratio: 1/1;
 }
 
-.info > .institution {
-    margin-bottom: 10px;
+.info {
+    display: flex;
+    flex-direction: column;
+
+    row-gap: 20px;
+}
+
+.options {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+    column-gap: 20px;
 }
 
 @media (min-width: 768px) {
@@ -37,13 +49,4 @@
     .logo {
         justify-content: start;
     }
-}
-
-.options {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-
-    display: flex;
-    column-gap: 20px;
 }

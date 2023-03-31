@@ -2,6 +2,12 @@
     flex-grow: 1;
 
     display: flex;
+    max-width: 1080px;
+    width: 100%;
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+
+    aspect-ratio: 21/9;
 }
 
 .banner {
@@ -14,6 +20,7 @@
     align-items: center;
 
     background-position: 50%;
+    background-size: cover;
 }
 
 .options {

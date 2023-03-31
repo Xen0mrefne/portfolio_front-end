@@ -1,3 +1,4 @@
+<div class="navbar">
     <div class="nav-logo">
         <div class="img">
             <svg width="26.458mm" height="26.458mm" version="1.1" viewBox="0 0 26.458 26.458"
@@ -14,6 +15,7 @@
     <div class="nav-menu">
         <div class="socials">
         </div>
-        <button *ngIf="!isLogged" routerLink="/login" class="btn btn-green">Log in</button>
-        <button *ngIf="isLogged" (click)="onLogOut()" class="btn btn-green">Log out</button>
+        <button *ngIf="!isLogged" routerLink="/login" class="btn btn-green btn-fill">Log in</button>
+        <button *ngIf="isLogged" (click)="onLogOut()" class="btn btn-green btn-fill">Log out</button>
     </div>
+</div>

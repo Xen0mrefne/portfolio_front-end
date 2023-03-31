@@ -11,9 +11,9 @@ export class ExperienceEditComponent {
   @Output() onCancelEdit: EventEmitter<any>= new EventEmitter();
   @Output() onEdit: EventEmitter<Experience>= new EventEmitter();
 
-  position!: string;
-  company!: string;
-  description!: string;
+  position: string = "";
+  company: string = "";
+  description: string = "";
 
   ngOnInit():void {
     this.position = this.experience.name;

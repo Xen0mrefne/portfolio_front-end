@@ -11,10 +11,10 @@ export class PersonEditComponent {
   @Output() onCancelEdit: EventEmitter<any>= new EventEmitter();
   @Input() person!: Person;
 
-  firstName!: string;
-  lastName!: string;
-  title!: string;
-  about!: string;
+  firstName: string = "";
+  lastName: string = "";
+  title: string = "";
+  about: string = "";
 
   ngOnInit(): void {
     this.firstName = this.person.firstName;
@@ -24,8 +24,13 @@ export class PersonEditComponent {
   }
 
   onSubmit(): void {
-    const updatedPerson = new Person(this.firstName, this.lastName, this.title, this.about, this.person.profileImage, this.person.bannerImage);
-    updatedPerson.id = this.person.id;
+    const updatedPerson: Person = {
+      ...this.person,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      title: this.title,
+      about: this.about
+    }
 
     this.onConfirmEdit.emit(updatedPerson)
   }

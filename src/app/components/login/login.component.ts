@@ -11,19 +11,19 @@ import { TokenService } from 'src/app/service/token.service';
 })
 export class LoginComponent {
   isLogged: boolean = false;
-  isLogginFail: boolean = false;
+  loginFail: boolean = false;
   loginUser!: LoginUser;
   username!: string;
   password!: string;
   roles!: string[];
-  err!: string;
+  message: string | undefined;
 
   constructor(private tokenService:TokenService, private authService:AuthService, private router: Router) {}
 
   ngOnInit(): void {
     if(this.tokenService.getToken()){
       this.isLogged = true;
-      this.isLogginFail = false;
+      this.loginFail = false;
       this.roles = this.tokenService.getAuthorities();
     }
   }
@@ -34,17 +34,20 @@ export class LoginComponent {
     this.authService.login(this.loginUser)
     .subscribe({next: data => {
         this.isLogged = true;
-        this.isLogginFail = false;
+        this.loginFail = false;
         this.tokenService.setToken(data.token);
         this.tokenService.setUsername(data.username);
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
-        this.router.navigate([""]) 
-      }, error: err => {
+        this.message = "Welcome, " + data.username
+        setTimeout(() => {
+          this.router.navigate([""]) 
+        }, 3000)
+      }, error: ({error}) => {
       this.isLogged = false;
-      this.isLogginFail = true;
-      this.err = err.message;
-      console.log(this.err)
+      this.loginFail = true;
+      this.message = "Username or password are incorrect";
+      console.log(this.message)
     }})
   }
 

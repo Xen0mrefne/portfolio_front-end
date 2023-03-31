@@ -18,13 +18,13 @@ export class TechnologiesComponent {
 
   isLogged: boolean = false;
   editing: boolean = false;
-  deleting: boolean = false;
 
   selectedTech!: Tech;
 
   constructor (private techService: TechnologiesService, private tokenService: TokenService) {}
 
   ngOnInit(): void {
+    this.editing = false;
     this.getTechs();
 
     if (this.tokenService.getToken()){

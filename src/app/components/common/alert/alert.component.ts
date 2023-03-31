@@ -19,6 +19,7 @@ export class AlertComponent {
     this.alertService.alert$.subscribe(data => {
       this.alert = data;
       this.showAlert = true;
+      clearTimeout(this.hideTimer)
       this.hideTimer = setTimeout(() => {
         this.showAlert = false;
       }, 3000)

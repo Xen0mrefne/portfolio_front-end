@@ -8,40 +8,64 @@ import { StorageService } from 'src/app/service/storage.service';
   styleUrls: ['./banner-edit.component.css']
 })
 export class BannerEditComponent {
-  @Output() onConfirmEdit: EventEmitter<string> = new EventEmitter();
+  @Output() onConfirmEdit: EventEmitter<{url: string, name: string}> = new EventEmitter();
   @Output() onCancelEdit: EventEmitter<any> = new EventEmitter();
   @Input() person!: Person;
   @Input() prevImageUrl!: string;
 
   newImage: any;
-  imageUrl!: string;
+  previewImage: string = ""
+  currentImageUrl!: string;
+  currentImageName!: string;
+  newImageUrl!: string;
+  newImageName!: string;
+
+  path: string = "users/banner/"
 
 
   constructor (private storageService: StorageService) {}
 
   ngOnInit(): void {
-    this.imageUrl = this.person.bannerImage;
+    if (this.person.bannerImageUrl)
+      this.previewImage = this.person.bannerImageUrl;
+      this.currentImageUrl = this.person.bannerImageUrl;
+
+    if (this.person.bannerImageName)
+      this.currentImageName = this.person.bannerImageName;
+
   }
 
   uploadImage(e: any): void {
+    
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file)
     reader.onloadend = () => {
       console.log(reader.result)
+      this.newImageName = this.person.id! + "_" + Date.now()
       this.newImage = reader.result
-      this.storageService.uploadBannerImage(this.person.id! + "_" + Date.now(), this.newImage).then(url => {
+      this.storageService.uploadImage(this.path, this.newImageName, this.newImage).then(url => {
         console.log(url);
-        this.imageUrl = url;
+        this.newImageUrl = url;
+        this.previewImage = url;
       })
     }
   }
 
   onSubmit(): void {
-    this.onConfirmEdit.emit(this.imageUrl)
+    if(this.currentImageName) {
+      console.log(this.currentImageName)
+      this.storageService.deleteImage(this.path, this.currentImageName)
+    }
+
+    this.onConfirmEdit.emit({url: this.newImageUrl, name: this.newImageName})
   }
 
   closeModal(): void {
+    if (this.newImageName) {
+      this.storageService.deleteImage(this.path, this.newImageName)
+    }
+
     this.onCancelEdit.emit();
   }
 }

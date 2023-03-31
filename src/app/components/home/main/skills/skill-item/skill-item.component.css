@@ -29,14 +29,16 @@
     width: 100%;
     height: 100%;
     transform: rotate(-90deg);
-    background-color: var(--red);
+    background-color: var(--black-opacity);
     border-radius: 50%;
 }
 
 .pie circle {
-    fill: var(--red);
-    stroke: var(--green);
+    fill: transparent;
+    stroke: var(--blue);
     stroke-width: 32;
+
+    transition: all 300ms;
 }
 
 .options {

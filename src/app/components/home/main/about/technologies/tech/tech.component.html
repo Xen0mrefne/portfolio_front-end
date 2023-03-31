@@ -1,5 +1,5 @@
 <div class="tech-container">
-    <span *ngIf="!isLogged" class="tech">{{tech.name}}</span>
+    <span *ngIf="!isLogged" class="btn tech">{{tech.name}}</span>
     <button type="button" (click)="toggleOptions()" *ngIf="isLogged" class="btn tech">{{tech.name}}</button>
     <div class="options" *ngIf="showOptions">
         <app-edit-button (onEditClick)="editTech()"></app-edit-button>

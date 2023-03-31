@@ -1,7 +1,7 @@
-<div class="banner" [ngStyle]="{'background-image': person ? 'url(' + person.bannerImage + ')' : ''}">
+<div class="banner" [ngStyle]="{'background-image': person ? 'url(' + person.bannerImageUrl + ')' : ''}">
     <!-- <img *ngIf="person" src="{{person.bannerImage}}" alt="">
     <img *ngIf="!person" src="" alt=""> -->
-    <div class="options" *ngIf="isLogged">
+    <div class="options" *ngIf="isLogged && person">
         <app-edit-button (onEditClick)="toggleBannerEdit()"></app-edit-button>
     </div>
 </div>

@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  ngOnDestroy(): void {
+    document.body.style.overflowY = "auto"
+  }
+
 }

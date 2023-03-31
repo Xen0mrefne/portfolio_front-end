@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Alert } from 'src/app/model/alert';
 import { Person } from 'src/app/model/person';
+import { AlertService } from 'src/app/service/alert.service';
 import { PersonService } from 'src/app/service/person.service';
 import { TokenService } from 'src/app/service/token.service';
 
@@ -14,9 +16,14 @@ export class BannerComponent {
   isLogged: boolean = false;
   bannerEdit: boolean = false;
 
-  constructor(private personService: PersonService, private tokenService: TokenService) { }
+  constructor(
+    private personService: PersonService,
+    private tokenService: TokenService,
+    private alertService: AlertService
+    ) { }
 
   ngOnInit(): void {
+    this.bannerEdit = false;
     setTimeout(() => {
       this.getPerson();
     }, 2000)
@@ -42,18 +49,19 @@ export class BannerComponent {
     document.body.style.overflowY = this.bannerEdit ? "hidden" : "scroll"
   }
 
-  editBanner(imageUrl: string): void {
+  editBanner(newImage: {url: string, name: string}): void {
     const updatedPerson = {...this.person}
-    updatedPerson.bannerImage = imageUrl;
+    updatedPerson.bannerImageUrl = newImage.url;
+    updatedPerson.bannerImageName = newImage.name;
 
     this.personService.update(this.person.id!, updatedPerson).subscribe({
       next: data => {
-        alert(data.message)
+        this.alertService.setAlert(new Alert(data.message, false))
         this.toggleBannerEdit();
         this.getPerson();
       }, error: ({ error }) => {
+        this.alertService.setAlert(new Alert(error.message, false))
         console.log(error);
-        alert(error.message)
       }
     })
   }

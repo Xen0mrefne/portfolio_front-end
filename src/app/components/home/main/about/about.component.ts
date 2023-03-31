@@ -29,6 +29,7 @@ export class AboutComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.infoEdit = this.photoEdit = false;
     setTimeout(() => {
       this.loading = true;
       this.getPerson();
@@ -70,14 +71,15 @@ export class AboutComponent implements OnInit {
         this.getPerson();
       }, error: ({ error }) => {
         this.alertService.setAlert(new Alert(error.message, true))
-        alert(error.message)
+        console.log(error)
       }
     })
   }
 
-  editPhoto(imageUrl: string): void {
-    const updatedPerson = {...this.person}
-    updatedPerson.profileImage = imageUrl;
+  editPhoto(newImage: {url: string, name: string}): void {
+    const updatedPerson: Person = {...this.person}
+    updatedPerson.profileImageUrl = newImage.url;
+    updatedPerson.profileImageName = newImage.name
 
     this.personService.update(this.person.id!, updatedPerson).subscribe({
       next: data => {
@@ -86,7 +88,7 @@ export class AboutComponent implements OnInit {
         this.getPerson();
       }, error: ({ error }) => {
         this.alertService.setAlert(new Alert(error.message, true))
-        alert(error.message)
+        console.log(error)
       }
     })
   }

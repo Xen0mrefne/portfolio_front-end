@@ -15,9 +15,9 @@ export class ExperienceAddComponent {
 
   
 
-  position!: string;
-  company!: string;
-  description!: string;
+  position: string = "";
+  company: string = "";
+  description: string = "";
 
 
   onSubmit(): void {

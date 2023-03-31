@@ -28,6 +28,7 @@ export class EducationComponent {
   selectedDegree!: Degree;
 
   ngOnInit(): void {
+    this.adding = this.editing = this.deleting = false;
     this.getDegrees();
 
     if (this.tokenService.getToken()) {

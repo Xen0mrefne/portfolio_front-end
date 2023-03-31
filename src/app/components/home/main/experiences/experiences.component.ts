@@ -27,6 +27,7 @@ export class ExperiencesComponent {
   selectedExperience!: Experience;
 
   ngOnInit(): void {
+    this.adding = this.editing = this.deleting = false;
     this.getExperience();
 
     if (this.tokenService.getToken()) {
@@ -58,7 +59,6 @@ export class ExperiencesComponent {
       }, error: ({error}) => {
         this.alertService.setAlert(new Alert(error.message, true))
         console.log(error)
-        this.toggleAdd();
       }
     })
   }

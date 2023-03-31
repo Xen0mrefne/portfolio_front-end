@@ -6,15 +6,28 @@ export class Person {
     lastName:string;
     title:string;
     about:string;
-    profileImage:string;
-    bannerImage:string;
+    profileImageUrl:string;
+    profileImageName:string;
+    bannerImageUrl:string;
+    bannerImageName:string;
 
-    constructor (firstName:string, lastName:string, title:string, about:string, profileImage:string, bannerImage:string ) {
+    constructor (
+        firstName:string,
+        lastName:string,
+        title:string,
+        about:string,
+        profileImageUrl:string,
+        profileImageName:string,
+        bannerImageUrl:string,
+        bannerImageName:string
+        ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
         this.about = about;
-        this.profileImage = profileImage;
-        this.bannerImage = bannerImage;
+        this.profileImageUrl = profileImageUrl;
+        this.profileImageName = profileImageName;
+        this.bannerImageUrl = bannerImageUrl;
+        this.bannerImageName = bannerImageName;
     }
 }

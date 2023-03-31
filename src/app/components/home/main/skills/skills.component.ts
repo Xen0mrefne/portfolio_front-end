@@ -27,6 +27,7 @@ export class SkillsComponent {
   selectedSkill!: Skill;
 
   ngOnInit(): void {
+    this.adding = this.editing = this.deleting = false;
     this.getSkills();
 
     if (this.tokenService.getToken()) {
