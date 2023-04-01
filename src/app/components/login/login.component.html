@@ -10,8 +10,8 @@
                 <input id="password" type="password" name="password" class="input" [(ngModel)]="password" required="true">
             </div>
             <p class="message {{loginFail ? 'red' : 'green'}}">{{message ? message : ""}}</p>
-            <button type="submit" class="submit btn">Login</button>
+            <button type="submit" class="btn btn-blue btn-fill">Login</button>
         </form>
-        <a class="return btn" routerLink="/home">Go back</a>
+        <a class="return btn btn-black btn-hover-black" routerLink="/home">Go back</a>
     </div>
 </div>

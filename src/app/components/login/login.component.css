@@ -31,15 +31,6 @@
     row-gap: 10px;
 }
 
-.submit {
-    border: 2px solid var(--blue);
-    border-radius: 5px;
-}
-
-.submit:hover {
-    background-color: var(--blue-light);
-}
-
 .return {
     margin-top: 20px;
     border-radius: 5px;
@@ -47,10 +38,6 @@
 
 .return::before {
     content:"< "
-}
-
-.return:hover {
-    background-color: var(--blue-opacity);
 }
 
 .message {

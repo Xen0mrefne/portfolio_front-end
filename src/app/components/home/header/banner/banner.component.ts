@@ -36,7 +36,7 @@ export class BannerComponent {
   }
 
   getPerson(): void {
-    this.personService.getPersons().subscribe({
+    this.personService.getPerson().subscribe({
       next: data => {
         this.person = data[0]
       }

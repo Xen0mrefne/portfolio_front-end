@@ -55,7 +55,7 @@ export class AboutComponent implements OnInit {
   }
 
   getPerson(): void {
-    this.personService.getPersons().subscribe({
+    this.personService.getPerson().subscribe({
       next: data => {
         this.person = data[0]
         this.loading = false;
