@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { JwtDto } from '../model/jwt-dto';
 import { LoginUser } from '../model/login-user';
 import { NewUser } from '../model/new-user';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'

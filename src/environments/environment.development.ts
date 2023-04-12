@@ -9,5 +9,5 @@ export const environment = {
     appId: "1:203187575512:web:69865349d9def28af3d5ad",
     measurementId: "G-S1WQ2YKBZ0"
   },
-  back_url: "https://portfolio-springboot-fzue.onrender.com"
+  back_url: "http://localhost:8080"
 };

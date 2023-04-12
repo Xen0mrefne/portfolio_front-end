@@ -17,7 +17,7 @@ export class TechAddComponent {
 
   toggleAdd(): void {
     this.adding = !this.adding
-    
+    this.techName = "";
   }
 
   onSubmit(): void {

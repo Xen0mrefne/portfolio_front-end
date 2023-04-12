@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/model/login-user';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
+import { LoaderType } from '../common/loader/loaderType';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,10 @@ import { TokenService } from 'src/app/service/token.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+  loading: boolean = false;
+  spinner = LoaderType.spinner;
+
   isLogged: boolean = false;
   loginFail: boolean = false;
   loginUser!: LoginUser;
@@ -37,6 +42,7 @@ export class LoginComponent {
   }
 
   onLogin(): void{
+    this.loading = true;
     this.loginUser = new LoginUser(this.username, this.password)
 
     this.authService.login(this.loginUser)
@@ -47,14 +53,16 @@ export class LoginComponent {
         this.tokenService.setUsername(data.username);
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
-        this.message = "Welcome, " + data.username
+        this.message = "Bienvenido, " + data.username;
+        this.loading = false;
         setTimeout(() => {
           this.toHome();
         }, 3000)
       }, error: ({error}) => {
       this.isLogged = false;
       this.loginFail = true;
-      this.message = "Username or password are incorrect";
+      this.message = "Usuario o contraseña incorrectos";
+      this.loading = false;
       setTimeout(() => {
         this.loginFail = false;
       }, 3000)

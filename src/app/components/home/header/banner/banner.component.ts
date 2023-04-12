@@ -12,6 +12,7 @@ import { TokenService } from 'src/app/service/token.service';
 })
 export class BannerComponent {
   @Output() onUpdate: EventEmitter<any> = new EventEmitter();
+  
   person!: Person;
 
   isLogged: boolean = false;

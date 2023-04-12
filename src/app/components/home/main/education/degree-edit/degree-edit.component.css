@@ -25,7 +25,8 @@ form {
 
 .input-row {
     display: flex;
-    column-gap: 20px;
+    flex-direction: column;
+    row-gap: 20px;
 }
 
 .input-row > * {
@@ -45,4 +46,13 @@ input {
     flex-basis: 0;
     flex-grow: 1;
     margin: 0px 5px;
+}
+
+@media (min-width: 512px) {
+    .input-row {
+        display: flex;
+        flex-direction: row;
+        column-gap: 20px;
+        row-gap: 0;
+    }
 }

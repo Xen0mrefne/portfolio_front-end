@@ -1,16 +1,19 @@
-<div class="login-container success" [ngClass]="{'success': isLogged === true, 'error': loginFail === true}">
+<div class="login-container success" [ngClass]="{'success': isLogged, 'error': loginFail}">
     <div class="login">
         <form #f (ngSubmit)="onLogin()" novalidate>
             <div class="user-input">
-                <label for="username">Username:</label>
+                <label for="username">Usuario:</label>
                 <input id="username" type="text" name="username" class="input" [(ngModel)]="username" required="true">
             </div>
             <div class="user-input">
-                <label for="password">Password:</label>
-                <input id="password" type="password" name="password" class="input" [(ngModel)]="password" required="true">
+                <label for="password">Contraseña:</label>
+                <input id="password" type="password" name="password" class="input" [(ngModel)]="password"
+                    required="true">
             </div>
             <p class="message {{loginFail ? 'red' : ''}} {{isLogged ? 'green' : ''}}">{{message ? message : "OMG"}}</p>
-            <button type="submit" class="btn btn-black btn-fill">Login</button>
+            <button type="submit" class="btn"
+                [ngClass]="{'btn-black btn-fill': !loading && !isLogged, 'btn-disabled': loading || isLogged}"
+                [attr.disabled]="loading || isLogged ? true : null">Login</button>
         </form>
         <button class="return btn btn-black btn-hover-black" (click)="toHome()">Go back</button>
     </div>
