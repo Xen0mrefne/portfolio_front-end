@@ -13,6 +13,7 @@ export class SkillEditComponent {
 
   name!: string;
   percent: number = 0;
+  personId!: number;
 
   ngOnInit(): void {
     this.name = this.skill.name;
@@ -24,7 +25,7 @@ export class SkillEditComponent {
   }
 
   onSubmit(): void {
-    const updatedSkill = new Skill(this.name, this.percent)
+    const updatedSkill = new Skill(this.name, this.percent, this.skill.personId)
     updatedSkill.id = this.skill.id;
 
     this.onEditConfirm.emit(updatedSkill);

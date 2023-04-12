@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { LoaderType } from 'src/app/components/common/loader/loaderType';
 import { Alert } from 'src/app/model/alert';
+import { Person } from 'src/app/model/person';
 import { Project } from 'src/app/model/project';
 import { AlertService } from 'src/app/service/alert.service';
+import { PersonService } from 'src/app/service/person.service';
 import { ProjectService } from 'src/app/service/project.service';
 import { TokenService } from 'src/app/service/token.service';
 
@@ -11,15 +14,20 @@ import { TokenService } from 'src/app/service/token.service';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent {
+  personId!: number;
   projects!:Project[];
 
   constructor (
     private projectService: ProjectService,
     private tokenService: TokenService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private personService: PersonService
     ) { }
   
+  loading: boolean = true;
+  card: LoaderType = LoaderType.card;
   isLogged: boolean = false;
+  isAdmin: boolean = false;
   adding: boolean = false;
   editing: boolean = false;
   deleting: boolean = false;
@@ -27,18 +35,25 @@ export class ProjectsComponent {
   selectedProject!: Project;
 
   ngOnInit(): void {
+    this.loading = true;
     this.adding = this.editing = this.deleting = false;
-    this.getProjects();
+    this.personService.person$.subscribe({next: person => {
+      this.personId = person.id;
+      this.getProjects();
+    }})
 
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-    } else {
-      this.isLogged = false;
-    }
+    this.isLogged = this.tokenService.getToken() ? true : false;
+
+    const authorities = this.tokenService.getAuthorities();
+
+    this.isAdmin = authorities.includes("ROLE_ADMIN") ? true : false;
   }
 
   getProjects(): void {
-    this.projectService.getAll().subscribe({next: data => this.projects = data})
+    this.projectService.getAll(this.personId).subscribe({next: projects => {
+      this.projects = projects
+      this.loading = false;
+    }})
   }
 
   addProject(project: Project): void {

@@ -1,25 +1,23 @@
-<h2 class="section-title">Educación <app-add-button *ngIf="isLogged" (onAddClick)="toggleAdd()"></app-add-button></h2>
-<div class="section-list">
-    <app-degree
-    *ngFor="let degree of degrees"
-    [degree]="degree"
-    [isLogged]="isLogged"
-    (onEdit)="toggleEdit($event)"
-    (onDelete)="toggleDelete($event)"></app-degree>
+<h2 class="section-title">Educación <app-add-button *ngIf="isLogged && isAdmin && !loading" (onAddClick)="toggleAdd()"></app-add-button>
+</h2>
+<div class="section-list" *ngIf="!loading && degrees.length > 0">
+    <app-degree *ngFor="let degree of degrees" [degree]="degree" [isLogged]="isLogged" [isAdmin]="isAdmin" (onEdit)="toggleEdit($event)"
+        (onDelete)="toggleDelete($event)"></app-degree>
 </div>
-<app-degree-add
-*ngIf="adding"
-(onCancelAdd)="toggleAdd()"
-(onAdd)="addDegree($event)"
-></app-degree-add>
+<div *ngIf="!loading && degrees.length === 0" class="empty-list">
+    <p>No se encontraron estudios/carreras</p>
+</div>
+<div class="loader-container" *ngIf="loading">
+    <div class="loader">
+        <app-loader [type]="card"></app-loader>
+    </div>
+</div>
 
-<app-degree-edit
-*ngIf="editing"
-[degree]="selectedDegree"
-(onCancelEdit)="toggleEdit()"
-(onEdit)="editDegree($event)"></app-degree-edit>
+<app-degree-add *ngIf="adding" [personId]="personId" (onCancelAdd)="toggleAdd()"
+    (onAdd)="addDegree($event)"></app-degree-add>
 
-<app-delete-confirmation
-*ngIf="deleting"
-(onConfirmDelete)="deleteDegree()"
-(onCancelDelete)="toggleDelete()"></app-delete-confirmation>
+<app-degree-edit *ngIf="editing" [degree]="selectedDegree" (onCancelEdit)="toggleEdit()"
+    (onEdit)="editDegree($event)"></app-degree-edit>
+
+<app-delete-confirmation *ngIf="deleting" (onConfirmDelete)="deleteDegree()"
+    (onCancelDelete)="toggleDelete()"></app-delete-confirmation>

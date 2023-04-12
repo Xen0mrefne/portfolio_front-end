@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Skill } from 'src/app/model/skill';
 
 @Component({
@@ -9,12 +9,13 @@ import { Skill } from 'src/app/model/skill';
 export class SkillAddComponent {
   @Output() onAdd: EventEmitter<Skill> = new EventEmitter();
   @Output() onCancelAdd: EventEmitter<any> = new EventEmitter();
+  @Input() personId!: number;
 
   name!: string;
   percent: number = 0;
 
   onSubmit(): void {
-    const newSkill = new Skill(this.name, this.percent);
+    const newSkill = new Skill(this.name, this.percent, this.personId);
 
     this.onAdd.emit(newSkill);
   }

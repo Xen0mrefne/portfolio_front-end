@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Degree } from 'src/app/model/degree';
 
 @Component({
@@ -9,17 +9,27 @@ import { Degree } from 'src/app/model/degree';
 export class DegreeAddComponent {
   @Output() onCancelAdd: EventEmitter<any> = new EventEmitter();
   @Output() onAdd: EventEmitter<Degree> = new EventEmitter();
+  @Input() personId!: number;
 
   title: string = ""
   institution: string = ""
   startDate: string = ""
-  endDate: string = ""
+  endDate?: string;
+
+  finished: boolean = true;
 
   onSubmit():void {
-    if (this.endDate === ""){
-      this.endDate = "Cursando"
+    if (!this.finished) {
+      this.endDate = undefined;
     }
-    const degree = new Degree(this.title, this.institution, this.startDate, this.endDate);
+
+    const degree = new Degree(
+      this.title,
+      this.institution,
+      this.finished,
+      this.startDate,
+      this.endDate || "",
+      this.personId);
 
     this.onAdd.emit(degree)
   }

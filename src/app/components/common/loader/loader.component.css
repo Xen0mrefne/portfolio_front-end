@@ -1,18 +1,23 @@
-.spinner {
-    display: flex;
-    column-gap: 10px;
-    padding: 10px;
+:host {
+    height: 100%;
+    width: 100%;
 }
 
-.spinner .dot {
-    background-color: black;
-    width: 15px;
+.spinner {
+    height: 100%;
     aspect-ratio: 1/1;
+}
+
+.spinner svg {
+    width: 100%;
+    height: 100%;
 
     animation-name: spin;
-    animation-duration: 500ms;
+    animation-duration: 1000ms;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+
+    z-index: 100;
 }
 
 @keyframes spin {
@@ -21,5 +26,60 @@
     }
     to {
         transform: rotate(360deg);
+    }
+}
+
+.card {
+    background-image: linear-gradient(to right, var(--gray), var(--white), var(--gray));
+    background-repeat: repeat-x;
+    background-size: 200%;
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+    animation-name: card-load;
+    animation-duration: 3000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes card-load {
+    0% {
+        background-position: -100%;
+    }
+    100% {
+        background-position: 300%;
+    }
+}
+
+.pie {
+    background-color: var(--gray);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+    padding: 20px;
+
+    animation-name: pulse;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.pie-fill {
+    background-color: var(--white);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: var(--gray);
+    }
+    50% {
+        background-color: var(--white);
+    }
+    100% {
+        background-color: var(--gray);
     }
 }

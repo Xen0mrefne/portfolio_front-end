@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Person } from '../model/person';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonService {
-  personURL = "http://localhost:8080/persons"
+  url = environment.back_url + "/persons"
+
+  person = new Subject<Person>();
+
+  person$ = this.person.asObservable();
 
   constructor(private httpClient: HttpClient) { }
 
     public getPerson(): Observable<Person[]> {
-      return this.httpClient.get<Person[]>(this.personURL)
+      return this.httpClient.get<Person[]>(this.url)
+    }
+
+    public setPerson(person: Person) {
+      this.person.next(person);
     }
 
     public createPerson(person: Person): Observable<Person> {
-      return this.httpClient.post<Person>(this.personURL, person)
+      return this.httpClient.post<Person>(this.url, person)
     }
 
     public update(id: number, person: Person): Observable<any> {
-      return this.httpClient.put<Person>(this.personURL + '/' + id, person)
+      return this.httpClient.put<Person>(this.url + '/' + id, person)
     }
 }

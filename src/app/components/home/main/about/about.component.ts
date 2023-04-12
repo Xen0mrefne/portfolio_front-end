@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { LoaderType } from 'src/app/components/common/loader/loaderType';
 import { Alert } from 'src/app/model/alert';
 import { AlertService } from 'src/app/service/alert.service';
@@ -13,14 +13,16 @@ import { Person } from '../../../../model/person';
 })
 
 export class AboutComponent implements OnInit {
+  @Output() onUpdate: EventEmitter<any> = new EventEmitter();
   person!: Person;
 
+  loading: boolean = true;
   spinner: LoaderType = LoaderType.spinner
 
   isLogged: boolean = false;
-  loading: boolean = true;
-  infoEdit: boolean = false;
-  photoEdit: boolean = false;
+  isAdmin: boolean = false;
+  infoEdit!: boolean;
+  photoEdit!: boolean;
 
   constructor(
     private personService: PersonService,
@@ -29,17 +31,20 @@ export class AboutComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.infoEdit = this.photoEdit = false;
-    setTimeout(() => {
-      this.loading = true;
-      this.getPerson();
-    }, 2000)
+    this.loading = true;
 
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-    } else {
-      this.isLogged = false;
-    }
+    this.infoEdit = this.photoEdit = false;
+    
+    this.personService.person$.subscribe({next: person => {
+      this.person = person;
+      this.loading = !this.person;
+    }})
+
+    this.isLogged = this.tokenService.getToken() ? true : false;
+
+    const authorities = this.tokenService.getAuthorities();
+
+    this.isAdmin = authorities.includes("ROLE_ADMIN") ? true : false;
   }
 
   toggleEdit(): void {
@@ -54,21 +59,12 @@ export class AboutComponent implements OnInit {
     document.body.style.overflowY = this.photoEdit ? "hidden" : "scroll"
   }
 
-  getPerson(): void {
-    this.personService.getPerson().subscribe({
-      next: data => {
-        this.person = data[0]
-        this.loading = false;
-      }
-    })
-  }
-
   editPerson(person: Person): void {
     this.personService.update(person.id!, person).subscribe({
       next: data => {
         this.alertService.setAlert(new Alert(data.message, false))
         this.toggleEdit();
-        this.getPerson();
+        this.onUpdate.emit();
       }, error: ({ error }) => {
         this.alertService.setAlert(new Alert(error.message, true))
         console.log(error)
@@ -85,7 +81,7 @@ export class AboutComponent implements OnInit {
       next: data => {
         this.alertService.setAlert(new Alert(data.message, false))
         this.togglePhotoEdit();
-        this.getPerson();
+        this.onUpdate.emit();
       }, error: ({ error }) => {
         this.alertService.setAlert(new Alert(error.message, true))
         console.log(error)

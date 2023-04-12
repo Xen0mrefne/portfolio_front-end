@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Alert } from 'src/app/model/alert';
 import { Person } from 'src/app/model/person';
 import { AlertService } from 'src/app/service/alert.service';
@@ -11,9 +11,11 @@ import { TokenService } from 'src/app/service/token.service';
   styleUrls: ['./banner.component.css']
 })
 export class BannerComponent {
+  @Output() onUpdate: EventEmitter<any> = new EventEmitter();
   person!: Person;
 
   isLogged: boolean = false;
+  isAdmin: boolean = false;
   bannerEdit: boolean = false;
 
   constructor(
@@ -24,23 +26,16 @@ export class BannerComponent {
 
   ngOnInit(): void {
     this.bannerEdit = false;
-    setTimeout(() => {
-      this.getPerson();
-    }, 2000)
+    
+    this.personService.person$.subscribe({next: person => {
+      this.person = person;
+    }})
 
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-    } else {
-      this.isLogged = false;
-    }
-  }
+    this.isLogged = this.tokenService.getToken() ? true : false;
 
-  getPerson(): void {
-    this.personService.getPerson().subscribe({
-      next: data => {
-        this.person = data[0]
-      }
-    })
+    const authorities = this.tokenService.getAuthorities();
+
+    this.isAdmin = authorities.includes("ROLE_ADMIN") ? true : false;
   }
 
   toggleBannerEdit(): void {
@@ -58,7 +53,7 @@ export class BannerComponent {
       next: data => {
         this.alertService.setAlert(new Alert(data.message, false))
         this.toggleBannerEdit();
-        this.getPerson();
+        this.onUpdate.emit();
       }, error: ({ error }) => {
         this.alertService.setAlert(new Alert(error.message, false))
         console.log(error);

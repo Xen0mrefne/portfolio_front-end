@@ -7,6 +7,7 @@
 
 .title {
     margin-bottom: 30px;
+    font-family: var(--font-2);
 }
 
 
@@ -16,6 +17,16 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 20px;
+}
+
+.empty-techs {
+    color: var(--dark-gray);
+    font-weight: 300;
+}
+
+.loader {
+    height: 40px;
+    width: 80px;
 }
 
 @media (min-width: 768px) {

@@ -1,15 +1,25 @@
-<h2 class="section-title">Habilidades <app-add-button *ngIf="isLogged" (onAddClick)="toggleAdd()"></app-add-button></h2>
+<h2 class="section-title">Habilidades <app-add-button *ngIf="isLogged && isAdmin && !loading" (onAddClick)="toggleAdd()"></app-add-button></h2>
 <div class="skill-grid">
     <app-skill-item
     *ngFor="let skill of skills"
     [isLogged]="isLogged"
+    [isAdmin]="isAdmin"
     [skill]="skill"
     (onEdit)="toggleEdit($event)"
     (onDelete)="toggleDelete($event)"></app-skill-item>
 </div>
+<div *ngIf="!loading && skills.length === 0" class="empty-list">
+    <p>No se encontraron habilidades</p>
+</div>
+<div class="loader-container" *ngIf="loading">
+    <div class="loader">
+        <app-loader [type]="pie"></app-loader>
+    </div>
+</div>
 
 <app-skill-add
 *ngIf="adding"
+[personId]="personId"
 (onCancelAdd)="toggleAdd()"
 (onAdd)="addSkill($event)"></app-skill-add>
 

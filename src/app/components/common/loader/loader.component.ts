@@ -11,4 +11,6 @@ export class LoaderComponent {
 
   spinner: LoaderType = LoaderType.spinner;
   text: LoaderType = LoaderType.text;
+  card: LoaderType = LoaderType.card;
+  pie: LoaderType = LoaderType.pie;
 }

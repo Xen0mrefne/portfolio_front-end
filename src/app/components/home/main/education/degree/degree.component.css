@@ -6,9 +6,18 @@
     padding: 30px 40px;
     text-align: center;
     border-radius: 10px;
+    margin-bottom: 30px;
+    border-bottom: 5px solid var(--blue);
+
     box-shadow: 0px 5px 20px -10px black;
-    margin-bottom: 1.3rem;
+    transition: box-shadow 300ms, transform 300ms;
 }
+
+:host:hover {
+    box-shadow: 0px 10px 30px -10px black;
+    transform: translateY(-5px);
+}
+
 
 .logo {
     display: flex;
@@ -29,6 +38,22 @@
     flex-direction: column;
 
     row-gap: 20px;
+}
+
+.info-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+}
+
+
+.small-card-text {
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
+h3 {
+    font-weight: 500;
 }
 
 .options {

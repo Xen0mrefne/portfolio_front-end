@@ -12,7 +12,7 @@ const AUTHORITIES_KEY = "AuthAuthorities";
 export class TokenService {
   roles: Array<string> = [];
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   public setToken(token: string):void {
     window.sessionStorage.removeItem(TOKEN_KEY)
@@ -49,6 +49,5 @@ export class TokenService {
 
   public logOut():void {
     window.sessionStorage.clear();
-    this.router.navigate(['login'])
   }
 }

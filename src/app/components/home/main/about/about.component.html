@@ -1,23 +1,28 @@
 <div class="photo-container">
     <div class="photo">
-        <img *ngIf="person" src="{{person.profileImageUrl}}" alt="">
-        <img *ngIf="!person" class="placeholder" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="">
-        <div class="overlay" *ngIf="isLogged && !loading">
+        <img *ngIf="person && person?.profileImageUrl !== null" src="{{person.profileImageUrl}}" alt="">
+        <img *ngIf="person && person?.profileImageUrl === null" class="placeholder" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="">
+        <div class="overlay-options" *ngIf="isLogged && isAdmin && !loading">
             <app-edit-button (onEditClick)="togglePhotoEdit()"></app-edit-button>
+        </div>
+        <div *ngIf="loading" class="overlay-loader">
+            <app-loader [type]="spinner"></app-loader>
         </div>
     </div>
 </div>
 <div class="title">
     <h2 *ngIf="person">{{person.lastName + ", " + person.firstName}}</h2>
     <h4 *ngIf="person">{{person.title}}</h4>
-    <app-loader *ngIf="!person" [type]="spinner"></app-loader>
+    <div class="loader">
+        <app-loader *ngIf="loading" [type]="spinner"></app-loader>
+    </div>
 </div>
 <div class="info">
     <p *ngIf="person" class="summary">{{person.about}}</p>
 
     <app-technologies></app-technologies>
 </div>
-<div class="options" *ngIf="isLogged && !loading">
+<div class="options" *ngIf="isLogged && isAdmin && !loading">
     <app-edit-button (onEditClick)="toggleEdit()"></app-edit-button>
 </div>
 <app-person-edit

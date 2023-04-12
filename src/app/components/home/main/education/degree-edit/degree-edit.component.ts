@@ -15,10 +15,12 @@ export class DegreeEditComponent {
   institution!: string;
   startDate!: string;
   endDate?: string;
+  finished!: boolean;
 
   ngOnInit(): void {
     this.title = this.degree.title;
     this.institution = this.degree.institution;
+    this.finished = this.degree.finished;
     this.startDate = this.degree.startDate;
     this.endDate = this.degree.endDate;
   }
@@ -28,7 +30,18 @@ export class DegreeEditComponent {
   }
 
   onSubmit(): void {
-    const updatedDegree = new Degree(this.title, this.institution, this.startDate, this.endDate || "Cursando")
+    if (!this.finished) {
+      this.endDate = undefined;
+    }
+
+    const updatedDegree = new Degree(
+      this.title,
+      this.institution,
+      this.finished,
+      this.startDate,
+      this.endDate || "",
+      this.degree.personId)
+      
     updatedDegree.id = this.degree.id;
 
     this.onEdit.emit(updatedDegree)

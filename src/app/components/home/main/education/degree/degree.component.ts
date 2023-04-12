@@ -11,6 +11,7 @@ export class DegreeComponent {
   @Output() onDelete: EventEmitter<Degree> = new EventEmitter()
   @Input() degree!: Degree;
   @Input() isLogged!: boolean;
+  @Input() isAdmin!: boolean;
 
   editDegree(): void {
     this.onEdit.emit(this.degree);

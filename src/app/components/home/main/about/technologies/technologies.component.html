@@ -1,24 +1,40 @@
 <div>
     <h3 class="title">Front-End:</h3>
-    <div class="tech-list">
+    <div class="tech-list" *ngIf="!loading">
         <app-tech
-        *ngFor="let tech of frontTechs"
+        *ngFor="let tech of frontTechs; let index = index"
         [tech]="tech"
+        [index]="index"
         [isLogged]="isLogged"
+        [isAdmin]="isAdmin"
         (onEdit)="toggleEdit($event)"
         (onDelete)="deleteTech($event)"></app-tech>
-        <app-tech-add *ngIf="isLogged" (onAdd)="addTech($event)" [techType]="frontEndType"></app-tech-add>
+        <app-tech-add *ngIf="isLogged && isAdmin && !loading" [personId]="personId" (onAdd)="addTech($event)" [techType]="frontEndType"></app-tech-add>
+        <div *ngIf="!isLogged && frontTechs?.length === 0" class="empty-techs">
+            <p>No se encontraron tecnologias front-end.</p>
+        </div>
+    </div>
+    <div class="loader" *ngIf="loading">
+        <app-loader [type]="card"></app-loader>
     </div>
 </div>
 <div>
     <h3 class="title">Back-End:</h3>
-    <div class="tech-list">
-        <app-tech *ngFor="let tech of backTechs"
+    <div class="tech-list" *ngIf="!loading">
+        <app-tech *ngFor="let tech of backTechs; let index = index"
         [tech]="tech"
+        [index]="index"
         [isLogged]="isLogged"
+        [isAdmin]="isAdmin"
         (onEdit)="toggleEdit($event)"
         (onDelete)="deleteTech($event)"></app-tech>
-        <app-tech-add *ngIf="isLogged" (onAdd)="addTech($event)" [techType]="backEndType"></app-tech-add>
+        <app-tech-add *ngIf="isLogged && isAdmin && !loading" [personId]="personId" (onAdd)="addTech($event)" [techType]="backEndType"></app-tech-add>
+    </div>
+    <div *ngIf="!isLogged && backTechs?.length === 0" class="empty-techs">
+        <p>No se encontraron tecnologias back-end.</p>
+    </div>
+    <div class="loader" *ngIf="loading">
+        <app-loader [type]="card"></app-loader>
     </div>
 </div>
 

@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="login-container success" [ngClass]="{'success': isLogged === true, 'error': loginFail === true}">
     <div class="login">
         <form #f (ngSubmit)="onLogin()" novalidate>
             <div class="user-input">
@@ -9,9 +9,9 @@
                 <label for="password">Password:</label>
                 <input id="password" type="password" name="password" class="input" [(ngModel)]="password" required="true">
             </div>
-            <p class="message {{loginFail ? 'red' : 'green'}}">{{message ? message : ""}}</p>
-            <button type="submit" class="btn btn-blue btn-fill">Login</button>
+            <p class="message {{loginFail ? 'red' : ''}} {{isLogged ? 'green' : ''}}">{{message ? message : "OMG"}}</p>
+            <button type="submit" class="btn btn-black btn-fill">Login</button>
         </form>
-        <a class="return btn btn-black btn-hover-black" routerLink="/home">Go back</a>
+        <button class="return btn btn-black btn-hover-black" (click)="toHome()">Go back</button>
     </div>
 </div>

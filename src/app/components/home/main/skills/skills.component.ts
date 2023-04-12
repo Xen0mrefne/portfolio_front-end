@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { LoaderType } from 'src/app/components/common/loader/loaderType';
 import { Alert } from 'src/app/model/alert';
 import { Skill } from 'src/app/model/skill';
 import { AlertService } from 'src/app/service/alert.service';
+import { PersonService } from 'src/app/service/person.service';
 import { SkillService } from 'src/app/service/skill.service';
 import { TokenService } from 'src/app/service/token.service';
 
@@ -11,15 +13,20 @@ import { TokenService } from 'src/app/service/token.service';
   styleUrls: ['./skills.component.css']
 })
 export class SkillsComponent {
+  personId!: number;
   skills!: Skill[];
 
   constructor (
     private skillService: SkillService,
     private tokenService: TokenService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private personService: PersonService
     ) { }
   
+  loading: boolean = true;
+  pie: LoaderType = LoaderType.pie;
   isLogged: boolean = false;
+  isAdmin: boolean = false;
   adding: boolean = false;
   editing: boolean = false;
   deleting: boolean = false;
@@ -27,18 +34,25 @@ export class SkillsComponent {
   selectedSkill!: Skill;
 
   ngOnInit(): void {
+    this.loading = true;
     this.adding = this.editing = this.deleting = false;
-    this.getSkills();
+    this.personService.person$.subscribe({next: person => {
+      this.personId = person.id;
+      this.getSkills();
+    }})
 
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-    } else {
-      this.isLogged = false;
-    }
+    this.isLogged = this.tokenService.getToken() ? true : false;
+
+    const authorities = this.tokenService.getAuthorities();
+
+    this.isAdmin = authorities.includes("ROLE_ADMIN") ? true : false;
   }
 
   getSkills(): void {
-    this.skillService.getAll().subscribe({next: data => this.skills = data})
+    this.skillService.getAll(this.personId).subscribe({next: skills => {
+      this.skills = skills;
+      this.loading = false;
+    }})
   }
 
   addSkill(skill: Skill): void {

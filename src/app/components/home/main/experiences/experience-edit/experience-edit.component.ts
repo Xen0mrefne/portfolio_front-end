@@ -22,7 +22,7 @@ export class ExperienceEditComponent {
   }
 
   onSubmit(): void {
-    const updatedExperience = new Experience(this.position, this.company, this.description);
+    const updatedExperience = new Experience(this.position, this.company, this.description, this.experience.personId);
     updatedExperience.id = this.experience.id;
     
 

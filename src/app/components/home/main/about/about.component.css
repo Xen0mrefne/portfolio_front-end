@@ -22,7 +22,23 @@
     height: 100%;
 }
 
-.overlay {
+.overlay-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 40px;
+    
+    background-color: rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-options {
     position: absolute;
     top: 0;
     left: 0;
@@ -66,6 +82,10 @@ img.placeholder {
 
     grid-template-columns: 1fr;
     row-gap: 40px;
+}
+
+.loader {
+    height: 50px;
 }
 
 .technologies {

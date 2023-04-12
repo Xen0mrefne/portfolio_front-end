@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Project } from 'src/app/model/project';
 
 @Component({
@@ -9,14 +9,14 @@ import { Project } from 'src/app/model/project';
 export class ProjectAddComponent {
   @Output() onAdd: EventEmitter<Project> = new EventEmitter();
   @Output() onCancelAdd: EventEmitter<any> = new EventEmitter();
+  @Input() personId!: number;
 
   name!: string;
   description!: string;
-  dateCreated!: string;
   url!: string;
 
   onSubmit(): void {
-    const newProject = new Project(this.name, this.description, this.dateCreated, this.url)
+    const newProject = new Project(this.name, this.description, this.url, this.personId)
     this.onAdd.emit(newProject);
   }
 

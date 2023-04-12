@@ -1,7 +1,18 @@
-<h3>{{experience.name}}</h3>
-<p>{{experience.company}}</p>
-<p>{{experience.description}}</p>
-<div class="options" *ngIf="isLogged">
+<div class="info">
+    <div class="info-group">
+        <p class="small-card-text">Posición</p>
+        <h3>{{experience.name}}</h3>
+    </div>
+    <div class="info-group">
+        <p class="small-card-text">Compañia</p>
+        <p>{{experience.company}}</p>
+    </div>
+    <div class="info-group">
+        <p class="small-card-text">Descripción</p>
+        <p>{{experience.description}}</p>
+    </div>
+</div>
+<div class="options" *ngIf="isLogged && isAdmin">
     <app-edit-button (onEditClick)="editExperience()"></app-edit-button>
     <app-delete-button (onDeleteClick)="deleteExperience()"></app-delete-button>
 </div>

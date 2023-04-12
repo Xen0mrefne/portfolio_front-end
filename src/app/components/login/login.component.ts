@@ -18,14 +18,22 @@ export class LoginComponent {
   roles!: string[];
   message: string | undefined;
 
-  constructor(private tokenService:TokenService, private authService:AuthService, private router: Router) {}
+  constructor(
+    private tokenService:TokenService,
+    private authService:AuthService,
+    private router: Router) {}
 
   ngOnInit(): void {
     if(this.tokenService.getToken()){
       this.isLogged = true;
       this.loginFail = false;
       this.roles = this.tokenService.getAuthorities();
+      this.toHome();
     }
+  }
+
+  toHome(): void {
+    this.router.navigate(["home"])
   }
 
   onLogin(): void{
@@ -41,12 +49,15 @@ export class LoginComponent {
         this.roles = data.authorities;
         this.message = "Welcome, " + data.username
         setTimeout(() => {
-          this.router.navigate([""]) 
+          this.toHome();
         }, 3000)
       }, error: ({error}) => {
       this.isLogged = false;
       this.loginFail = true;
       this.message = "Username or password are incorrect";
+      setTimeout(() => {
+        this.loginFail = false;
+      }, 3000)
       console.log(this.message)
     }})
   }

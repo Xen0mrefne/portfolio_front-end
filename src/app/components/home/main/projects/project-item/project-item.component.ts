@@ -11,6 +11,7 @@ export class ProjectItemComponent {
   @Output() onDelete: EventEmitter<Project> = new EventEmitter();
   @Input() project!: Project;
   @Input() isLogged!: boolean;
+  @Input() isAdmin!: boolean;
 
   editProject(): void {
     this.onEdit.emit(this.project);

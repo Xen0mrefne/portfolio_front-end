@@ -1,7 +1,20 @@
 @import url('../../../../common/css/modal.css');
 
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .photo {
-    height: 200px;
+    border: 2px solid var(--blue);
+    border-radius: 15px;
+    overflow: hidden;
+
+    width: 200px;
+    max-width: 200px;
+    aspect-ratio: 1/1;
+
     
     display: flex;
     justify-content: center;
@@ -9,8 +22,12 @@
 }
 
 .photo > img {
-    height: 100%;
-    background-color: var(--gray);
+    max-height: 100%;
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+
+    background-color: lightgray;
 }
 
 .user-input {
@@ -25,8 +42,13 @@ input[type = file] {
     display: none;
 }
 
+.upload-btn {
+    margin-top: 20px;
+}
+
 .options {
     display: flex;
+    width: 100%;
 }
 
 .options > button {

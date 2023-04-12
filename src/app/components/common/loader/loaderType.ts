@@ -1,4 +1,6 @@
 export enum LoaderType {
     spinner = "SPINNER",
-    text = "TEXT"
+    text = "TEXT",
+    card = "CARD",
+    pie = "PIE"
 }

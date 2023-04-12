@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
 import { Experience } from 'src/app/model/experience';
 
 @Component({
@@ -11,6 +11,7 @@ import { Experience } from 'src/app/model/experience';
 export class ExperienceAddComponent {
   @Output() onCancelAdd: EventEmitter<any>= new EventEmitter();
   @Output() onAdd: EventEmitter<Experience>= new EventEmitter();
+  @Input() personId!: number;
 
 
   
@@ -21,7 +22,7 @@ export class ExperienceAddComponent {
 
 
   onSubmit(): void {
-    const experience = new Experience(this.position, this.company, this.description);
+    const experience = new Experience(this.position, this.company, this.description, this.personId);
 
     this.onAdd.emit(experience)
   }

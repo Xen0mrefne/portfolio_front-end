@@ -1,9 +1,9 @@
 <header>
     <app-navbar></app-navbar>
-    <app-banner></app-banner>
+    <app-banner (onUpdate)="getPerson()"></app-banner>
 </header>
 <main>
-    <app-about></app-about>
+    <app-about (onUpdate)="getPerson()"></app-about>
     <app-experiences></app-experiences>
     <app-education></app-education>
     <app-skills></app-skills>

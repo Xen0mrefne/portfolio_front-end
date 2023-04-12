@@ -10,13 +10,19 @@
                 <input id="institution" name="institution" class="input" type="text" [(ngModel)]="institution"
                     value="{{institution}}">
             </div>
-            <div class="user-input">
-                <label for="start-date">Fecha de inicio:</label>
-                <input id="start-date" name="start-date" [(ngModel)]="startDate" value="{{startDate}}" class="input">
+            <div class="user-check">
+                <label for="finished">Finalizado?</label>
+                <input name="finished" type="checkbox" [(ngModel)]="finished">
             </div>
-            <div class="user-input">
-                <label for="end-date">Fecha de finalización:</label>
-                <input id="end-date" name="end-date" [(ngModel)]="endDate" value="{{endDate}}" class="input">
+            <div class="input-row">
+                <div class="user-input">
+                    <label for="start-date">Fecha de inicio:</label>
+                    <input id="start-date" type="date" name="start-date" [(ngModel)]="startDate" value="{{startDate}}" class="input">
+                </div>
+                <div class="user-input" *ngIf="finished">
+                    <label for="end-date">Fecha de finalización:</label>
+                    <input id="end-date" type="date" name="end-date" [(ngModel)]="endDate" value="{{endDate}}" class="input">
+                </div>
             </div>
         </div>
         <div class="options">

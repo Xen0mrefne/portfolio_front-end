@@ -4,7 +4,7 @@
 <div class="name">
     <p>{{skill.name}}</p>
 </div>
-<div class="options" *ngIf="isLogged">
+<div class="options" *ngIf="isLogged && isAdmin">
     <app-edit-button (onEditClick)="editSkill()"></app-edit-button>
     <app-delete-button (onDeleteClick)="deleteSkill()"></app-delete-button>
 </div>

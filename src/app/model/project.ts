@@ -2,13 +2,13 @@ export class Project {
     id?: number;
     name: string;
     description: string;
-    dateCreated: string;
     url: string;
+    personId: number;
 
-    constructor (name: string, description: string, dateCreated: string, url: string) {
+    constructor (name: string, description: string, url: string, personId: number) {
         this.name = name;
         this.description = description;
-        this.dateCreated = dateCreated;
         this.url = url;
+        this.personId = personId;
     }
 }

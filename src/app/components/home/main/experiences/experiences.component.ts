@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { LoaderType } from 'src/app/components/common/loader/loaderType';
 import { Alert } from 'src/app/model/alert';
 import { Experience } from 'src/app/model/experience';
 import { AlertService } from 'src/app/service/alert.service';
 import { ExperienceService } from 'src/app/service/experience.service';
+import { PersonService } from 'src/app/service/person.service';
 import { TokenService } from 'src/app/service/token.service';
 
 @Component({
@@ -12,14 +14,19 @@ import { TokenService } from 'src/app/service/token.service';
 })
 export class ExperiencesComponent {
   experiences: Experience[] = [];
+  personId!: number;
 
   constructor(
     private experienceService: ExperienceService,
     private tokenService: TokenService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private personService: PersonService,
     ) { }
 
+  loading: boolean = true;
+  card: LoaderType = LoaderType.card
   isLogged: boolean = false;
+  isAdmin: boolean = false;
   adding: boolean = false;
   editing: boolean = false;
   deleting: boolean = false;
@@ -27,18 +34,25 @@ export class ExperiencesComponent {
   selectedExperience!: Experience;
 
   ngOnInit(): void {
+    this.loading = true;
     this.adding = this.editing = this.deleting = false;
-    this.getExperience();
+    this.personService.person$.subscribe({next: person => {
+      this.personId = person.id;
+      this.getExperiences();
+    }})
 
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-    } else {
-      this.isLogged = false;
-    }
+    this.isLogged = this.tokenService.getToken() ? true : false;
+
+    const authorities = this.tokenService.getAuthorities();
+
+    this.isAdmin = authorities.includes("ROLE_ADMIN") ? true : false;
   }
 
-  getExperience(): void {
-    this.experienceService.getAll().subscribe({ next: data => this.experiences = data })
+  getExperiences(): void {
+    this.experienceService.getAll(this.personId).subscribe({ next: experiences => {
+      this.experiences = experiences
+      this.loading = false
+    } })
   }
 
   toggleAdd(): void {
@@ -55,7 +69,7 @@ export class ExperiencesComponent {
       next: data => {
         this.alertService.setAlert(new Alert(data.message, false))
         this.toggleAdd();
-        this.getExperience();
+        this.getExperiences();
       }, error: ({error}) => {
         this.alertService.setAlert(new Alert(error.message, true))
         console.log(error)
@@ -87,7 +101,7 @@ export class ExperiencesComponent {
     this.experienceService.update(experience.id!, experience).subscribe({
       next: data => {
         this.alertService.setAlert(new Alert(data.message, false))
-        this.getExperience();
+        this.getExperiences();
         this.toggleEdit();
       }, error: ({error}) => {
         this.alertService.setAlert(new Alert(error.message, true))
@@ -100,7 +114,7 @@ export class ExperiencesComponent {
     this.experienceService.delete(this.selectedExperience.id!).subscribe({
       next: data => {
         this.alertService.setAlert(new Alert(data.message, false))
-        this.getExperience();
+        this.getExperiences();
         this.toggleDelete();
       }, error: ({error}) => {
         this.alertService.setAlert(new Alert(error.message, true))

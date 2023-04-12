@@ -19,7 +19,6 @@ export class ProjectEditComponent {
   ngOnInit(): void {
     this.name = this.project.name;
     this.description = this.project.description;
-    this.dateCreated = this.project.dateCreated;
     this.url = this.project.url;
   }
 
@@ -28,7 +27,7 @@ export class ProjectEditComponent {
   }
 
   onSubmit(): void {
-    const updatedProject = new Project(this.name, this.description, this.dateCreated, this.url)
+    const updatedProject = new Project(this.name, this.description, this.url, this.project.personId)
     updatedProject.id = this.project.id
 
     this.onEditConfirm.emit(updatedProject);

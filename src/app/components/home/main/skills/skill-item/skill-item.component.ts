@@ -11,6 +11,7 @@ export class SkillItemComponent {
   @Output() onDelete: EventEmitter<Skill> = new EventEmitter();
   @Input() skill!: Skill;
   @Input() isLogged!: boolean;
+  @Input() isAdmin!: boolean;
 
 
   editSkill(): void {

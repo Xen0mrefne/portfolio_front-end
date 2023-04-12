@@ -16,7 +16,7 @@ header {
 
 
 main {
-    padding: 0 3%;
+    padding: 0 3% 50px 3%;
 
     background-color: white;
     border-left: 1px solid lightgrey;
@@ -25,5 +25,6 @@ main {
     display: flex;
     flex-direction: column;
     gap: 40px;
+    width: 100%;
     max-width: 1080px;
 }

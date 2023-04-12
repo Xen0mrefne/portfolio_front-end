@@ -1,14 +1,24 @@
-<h2 class="section-title">Experiencia <app-add-button *ngIf="isLogged" (onAddClick)="toggleAdd()"></app-add-button></h2>
-<div class="section-list">
+<h2 class="section-title">Experiencia <app-add-button *ngIf="isLogged && isAdmin && !loading" (onAddClick)="toggleAdd()"></app-add-button></h2>
+<div class="section-list" *ngIf="!loading && experiences.length > 0">
     <app-experience-item
     *ngFor="let experience of experiences"
     [experience]="experience"
     [isLogged]="isLogged"
+    [isAdmin]="isAdmin"
     (onExperienceEdit)="toggleEdit($event)"
     (onExperienceDelete)="toggleDelete($event)"></app-experience-item>
 </div>
+<div *ngIf="!loading && experiences.length === 0" class="empty-list">
+    <p>No se encontraron experiencias laborales</p>
+</div>
+<div class="loader-container" *ngIf="loading">
+    <div class="loader">
+        <app-loader [type]="card"></app-loader>
+    </div>
+</div>
 <app-experience-add
 *ngIf="adding"
+[personId]="personId"
 (onCancelAdd)="toggleAdd()"
 (onAdd)="addExperience($event)"></app-experience-add>
 <app-experience-edit

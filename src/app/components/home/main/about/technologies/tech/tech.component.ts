@@ -10,7 +10,9 @@ export class TechComponent {
   @Output() onEdit: EventEmitter<Tech> = new EventEmitter();
   @Output() onDelete: EventEmitter<Tech> = new EventEmitter();
   @Input() isLogged!: boolean;
+  @Input() isAdmin!: boolean;
   @Input() tech!: Tech;
+  @Input() index!: number;
 
   showOptions: boolean = false;
 

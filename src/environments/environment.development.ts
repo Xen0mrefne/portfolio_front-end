@@ -1,11 +1,13 @@
 export const environment = {
-    firebaseConfig: {
-        apiKey: "AIzaSyAPUdHKlDZzKdVXOecpv1dwUsTCsFKup3c",
-        authDomain: "angular-portfolio-d72e0.firebaseapp.com",
-        projectId: "angular-portfolio-d72e0",
-        storageBucket: "angular-portfolio-d72e0.appspot.com",
-        messagingSenderId: "80006630853",
-        appId: "1:80006630853:web:e6e88030579f53435f0fac",
-        measurementId: "G-TXZ981RYKB"
-      }
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyAHwQLLCQCA01AaeKgBft21APDbc0_y-9w",
+    authDomain: "ortega-portfolio.firebaseapp.com",
+    projectId: "ortega-portfolio",
+    storageBucket: "ortega-portfolio.appspot.com",
+    messagingSenderId: "203187575512",
+    appId: "1:203187575512:web:69865349d9def28af3d5ad",
+    measurementId: "G-S1WQ2YKBZ0"
+  },
+  back_url: "https://portfolio-springboot-fzue.onrender.com"
 };

@@ -18,7 +18,7 @@ export class TechEditComponent {
   }
 
   onSubmit(): void {
-    const updatedTech = new Tech(this.name, this.tech.techType);
+    const updatedTech = new Tech(this.name, this.tech.techType, this.tech.personId);
     updatedTech.id = this.tech.id;
 
     this.onConfirmEdit.emit(updatedTech)

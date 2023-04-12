@@ -10,12 +10,12 @@
                 </g>
             </svg>
         </div>
-        <p class="text"><span class="bold">Argentina Programa</span><br>#YoProgramo</p>
+        <p class="text"><span class="bold">Ortega Valentín</span><br>#YoProgramo</p>
     </div>
     <div class="nav-menu">
         <div class="socials">
         </div>
-        <button *ngIf="!isLogged" routerLink="/login" class="btn btn-green btn-fill">Log in</button>
+        <button *ngIf="!isLogged" (click)="toLogin()" class="btn btn-green btn-fill">Log in</button>
         <button *ngIf="isLogged" (click)="onLogOut()" class="btn btn-green btn-fill">Log out</button>
     </div>
 </div>

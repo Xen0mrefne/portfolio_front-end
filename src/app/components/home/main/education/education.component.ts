@@ -4,7 +4,8 @@ import { AlertService } from 'src/app/service/alert.service';
 import { DegreeService } from 'src/app/service/degree.service';
 import { TokenService } from 'src/app/service/token.service';
 import { Degree } from '../../../../model/degree'
-import { DEGREES } from './degree_list';
+import { PersonService } from 'src/app/service/person.service';
+import { LoaderType } from 'src/app/components/common/loader/loaderType';
 
 @Component({
   selector: 'app-education',
@@ -13,33 +14,45 @@ import { DEGREES } from './degree_list';
 })
 export class EducationComponent {
   degrees!: Degree[];
+  personId!: number;
 
-  constructor(
-    private degreeService: DegreeService,
-    private tokenService: TokenService,
-    private alertService: AlertService
-    ) { }
-
+  loading: boolean = true;
+  card: LoaderType = LoaderType.card;
   isLogged: boolean = false;
+  isAdmin: boolean = false;
   adding: boolean = false;
   editing: boolean = false;
   deleting: boolean = false;
 
+  constructor(
+    private degreeService: DegreeService,
+    private tokenService: TokenService,
+    private alertService: AlertService,
+    private personService: PersonService
+    ) { }
+
   selectedDegree!: Degree;
 
   ngOnInit(): void {
+    this.loading = true
     this.adding = this.editing = this.deleting = false;
-    this.getDegrees();
+    this.personService.person$.subscribe({next: person => {
+      this.personId = person.id;
+      this.getDegrees();
+    }})
 
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-    } else {
-      this.isLogged = false;
-    }
+    this.isLogged = this.tokenService.getToken() ? true : false;
+
+    const authorities = this.tokenService.getAuthorities();
+
+    this.isAdmin = authorities.includes("ROLE_ADMIN") ? true : false;
   }
 
   getDegrees():void {
-    this.degreeService.getAll().subscribe({next: data => this.degrees = data})
+    this.degreeService.getAll(this.personId).subscribe({next: data => {
+      this.degrees = data;
+      this.loading = false;
+    }})
   }
 
   toggleAdd(): void {

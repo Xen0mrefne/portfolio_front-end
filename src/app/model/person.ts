@@ -1,7 +1,7 @@
 import { Tech } from "./tech";
 
 export class Person {
-    id?:number;
+    id:number;
     firstName:string;
     lastName:string;
     title:string;
@@ -12,6 +12,7 @@ export class Person {
     bannerImageName:string;
 
     constructor (
+        id:number,
         firstName:string,
         lastName:string,
         title:string,
@@ -21,6 +22,7 @@ export class Person {
         bannerImageUrl:string,
         bannerImageName:string
         ) {
+        this.id = id
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
